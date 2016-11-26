@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="BeanChildFactory.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="BeanNode.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="DataRepository.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="Panel.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="TableViewWithPopup.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="VaadinForm.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="ViewerTopComponent.java">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+</attributes>

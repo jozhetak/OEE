@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.aleph5.ipovyc_ipovyc.PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.aleph5.ipovyc.pojo.C02Demandas</class>
+    <class>com.aleph5.ipovyc.pojo.Z02Escenarios</class>
+    <class>com.aleph5.ipovyc.pojo.A01Plantas</class>
+    <class>com.aleph5.ipovyc.pojo.B04RutasBodegaCliente</class>
+    <class>com.aleph5.ipovyc.pojo.Z01Periodos</class>
+    <class>com.aleph5.ipovyc.pojo.A03Productos</class>
+    <class>com.aleph5.ipovyc.pojo.A05CambiosColor</class>
+    <class>com.aleph5.ipovyc.pojo.B03RutasPlantaBodega</class>
+    <class>com.aleph5.ipovyc.pojo.B02Inventarios</class>
+    <class>com.aleph5.ipovyc.pojo.B05RestriccionMedioTransporte</class>
+    <class>com.aleph5.ipovyc.pojo.B01Bodegas</class>
+    <class>com.aleph5.ipovyc.pojo.C01Clientes</class>
+    <class>com.aleph5.ipovyc.pojo.A07CampanasHorno</class>
+    <class>com.aleph5.ipovyc.pojo.A04ProcesosSecundarios</class>
+    <class>com.aleph5.ipovyc.pojo.A02Hornos</class>
+    <class>com.aleph5.ipovyc.pojo.A06ProductosHorno</class>
+    <class>com.aleph5.ipovyc.pojo.ZA03ProductosDetalle</class>
+    <class>com.aleph5.ipovyc.pojo.ZB02InventariosBodegas</class>
+    <class>com.aleph5.ipovyc.pojo.ZC02Demandas</class>
+    <class>com.aleph5.ipovyc.pojo.A08RestriccionesCompra</class>
+    <class>com.aleph5.ipovyc.pojo.A08RestriccionesCompraProcesoSecundario</class>
+    <class>com.aleph5.ipovyc.pojo.Y02Asuetos</class>
+    <class>com.aleph5.ipovyc.pojo.Z03GruposEspesor</class>
+    <class>com.aleph5.ipovyc.pojo.Z09Horizontes</class>
+    <class>com.aleph5.ipovyc.pojo.Y05AdiProcess</class>
+    <class>com.conciencia.pojo.CPlanta</class>
+    <class>com.conciencia.pojo.CMaquina</class>
+    <class>com.conciencia.pojo.COperador</class>
+    <class>com.conciencia.pojo.CTurno</class>
+    <class>com.conciencia.pojo.CParoProgramado</class>
+    <class>com.conciencia.pojo.CProducto</class>
+    <class>com.conciencia.pojo.CUnidadProductiva</class>
+    <class>com.conciencia.pojo.CRateProduccion</class>
+    <class>com.conciencia.pojo.OProgramaProduccion</class>
+    <class>com.conciencia.pojo.OAsignacionProgramaProduccion</class>
+    <class>com.conciencia.pojo.OReporteOperador</class>
+    <class>com.conciencia.pojo.OParoNoProgramados</class>
+    <class>com.conciencia.pojo.OInformePiezasRechazadas</class>
+    <class>com.conciencia.pojo.SysRole</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=ipovyc"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.user" value="ipoadmin"/>
+      <property name="javax.persistence.jdbc.password" value="Aleph5"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

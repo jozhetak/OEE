@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="CSV.java">
+        <attr name="displayName" stringvalue="CSV"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+    <fileobject name="Configs.java">
+        <attr name="displayName" stringvalue="Configs"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="Controller.java">
+        <attr name="displayName" stringvalue="Controller"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="DTO.java">
+        <attr name="displayName" stringvalue="DTO"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+    <fileobject name="Grid.ftl">
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="Macros.java">
+        <attr name="displayName" stringvalue="Macros"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="Manager.java">
+        <attr name="displayName" stringvalue="Manager"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+    <fileobject name="Mapper.java">
+        <attr name="displayName" stringvalue="Mapper"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="MapperXML.java">
+        <attr name="displayName" stringvalue="MapperXML"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+    <fileobject name="Original">
+        <attr name="displayName" stringvalue="Original"/>
+    </fileobject>
+    <fileobject name="RestService.java">
+        <attr name="displayName" stringvalue="RestService"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+    </fileobject>
+    <fileobject name="Sapo.java">
+        <attr name="displayName" stringvalue="Sapo"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+    <fileobject name="Service.java">
+        <attr name="displayName" stringvalue="Service"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+    <fileobject name="ServiceImpl.java">
+        <attr name="displayName" stringvalue="ServiceImpl"/>
+        <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+        <attr name="requireProject" boolvalue="true"/>
+        <attr name="template" boolvalue="true"/>
+        <attr name="templateCategory" stringvalue="java-classes,java-classes-basic"/>
+    </fileobject>
+</attributes>
