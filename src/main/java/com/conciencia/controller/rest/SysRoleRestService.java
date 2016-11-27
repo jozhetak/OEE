@@ -1,8 +1,8 @@
 package com.conciencia.controller.rest;
 
 
-import com.conciencia.pojo.SysUser;
-import com.conciencia.service.SysUserService;
+import com.conciencia.pojo.SysRole;
+import com.conciencia.service.SysRoleService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,21 +21,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * Controlador de las interacciones REST para el manejo de la tabla Usuarios.
+ * Controlador de las interacciones REST para el manejo de la tabla Roles.
  * 
  * @author Ernesto Cantu
  * Conciencia
  * 26/11/2016
  */
 @RestController
-@RequestMapping(value = "/rest/sysUser")
-public class SysUserRestService {
+@RequestMapping(value = "/rest/sysRole")
+public class SysRoleRestService {
 
     /* Variable que apunta a la bitácora de la clase */
-    private static final Logger LOG = Logger.getLogger(SysUserRestService.class.getName());
+    private static final Logger LOG = Logger.getLogger(SysRoleRestService.class.getName());
 
     @Resource
-    private SysUserService service;
+    private SysRoleService service;
     
     /**
      * Método que genera la lista de Procesos Raci existentes
@@ -43,25 +43,25 @@ public class SysUserRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<SysUser> getAll() {
-        LOG.log(Level.INFO,"Obteniendo Todos los usuarios del sistema");
+    public List<SysRole> getAll() {
+        LOG.log(Level.INFO,"Obteniendo Todos los roles del sistema");
         return service.findAll();
     }
     
     /**
-     * Servicio rest que permite crear objetos SysUser en la base de datos
-     * @param user
+     * Servicio rest que permite crear objetos SysRole en la base de datos
+     * @param role
      * @return Status del insert.
      */
     @RequestMapping(value="/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity create(@RequestBody SysUser user) {
-        LOG.log(Level.INFO,"Creando el objeto {0}",user);
+    public ResponseEntity create(@RequestBody SysRole role) {
+        LOG.log(Level.INFO,"Creando el objeto {0}",role);
         Map<String,Object> response = new HashMap<>();
         try{
-            SysUser created = service.createUser(user);
+            SysRole created = service.createRole(role);
             if(created != null){
-                response.put("created_value",user);
+                response.put("created_value",role);
                 return new ResponseEntity<>(response,HttpStatus.CREATED);
             }
             else
@@ -74,19 +74,19 @@ public class SysUserRestService {
     }
     
     /**
-     * Servicio rest que permite crear objetos SysUser en la base de datos
-     * @param user
+     * Servicio rest que permite crear objetos SysRole en la base de datos
+     * @param role
      * @return Status del insert.
      */
     @RequestMapping(value="/update",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity update(@RequestBody SysUser user) {
+    public ResponseEntity update(@RequestBody SysRole role) {
         
-        LOG.log(Level.INFO,"Actualizando el objeto {0}",user);
+        LOG.log(Level.INFO,"Actualizando el objeto {0}",role);
         Map<String,Object> response = new HashMap<>();
         
         try{
-            SysUser updated = service.updateUser(user);
+            SysRole updated = service.updateRole(role);
             response.put("updated_value",updated);
             return new ResponseEntity<>(response,HttpStatus.OK);
         }catch(Exception e){
@@ -97,20 +97,20 @@ public class SysUserRestService {
     }
     
     /**
-     * Servicio rest que permite crear objetos SysUSer en la base de datos
-     * @param user
+     * Servicio rest que permite crear objetos SysRole en la base de datos
+     * @param role
      * @return Status del delete.
      */
     @RequestMapping(value="/delete",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity delete(@RequestBody SysUser user) {
+    public ResponseEntity delete(@RequestBody SysRole role) {
         
-        LOG.log(Level.INFO,"Eliminando el objeto {0}",user);
+        LOG.log(Level.INFO,"Eliminando el objeto {0}",role);
         Map<String,Object> response = new HashMap<>();
         try{
-            Boolean deleted = service.deleteUser(user.getRecid());
+            Boolean deleted = service.deleteRole(role.getRecid());
             if(deleted){
-                response.put("deleted_value",user);
+                response.put("deleted_value",role);
                 return new ResponseEntity<>(response,HttpStatus.OK);
             }else{
                 throw new Exception("An error ocurred");
@@ -121,6 +121,7 @@ public class SysUserRestService {
             return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
         }
     }
+    
     
     /**
      * Manejador de excepciones generadas por argumentos no válidos.

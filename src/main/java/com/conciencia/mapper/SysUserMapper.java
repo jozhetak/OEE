@@ -74,24 +74,50 @@ public interface SysUserMapper {
     
     static final String DELETE_USER = "DELETE FROM `oee_db`.`usuarios` WHERE id_usuario = #{recid}";
 
+    /**
+     * Regresa la lista de usuarios existentes
+     * @return 
+     */
     @Select(FIND_ALL)
     public List<SysUser> findAll();
     
+    /**
+     * Busca un usuario por su id
+     * @param recid el id de usuario
+     * @return el usuario encontrado
+     */
     @Select(FIND_BY_ID)
     public SysUser findById(Long recid);
     
+    /**
+     * Busca un usuario por su user name
+     * @param userName el nombre del usuario
+     * @return el usuario encontrado
+     */
     @Select(FIND_BY_USER_NAME)
     public SysUser findByUserName(String userName);
 
+    /**
+     * Inserta un usuario nuevo al sistema
+     * @param usuario el usuario a insertar
+     */
     @Insert(INSERT_USER)
     @Options(useGeneratedKeys = true, keyProperty = "recid", flushCache = true, keyColumn = "id")
-    public int insert(SysUser usuario);
+    public void insert(SysUser usuario);
     
+    /**
+     * Actualiza un usuario dado
+     * @param usuario el usuario a actualizar
+     */
     @Transactional
     @Update(UPDATE_USER)
     public void update(SysUser usuario);
 
+    /**
+     * Elimina un usuario del sistema
+     * @param recid el id del usuario
+     */
     @Transactional
     @Delete(DELETE_USER)
-    public int delete(Long recid);
+    public void delete(Long recid);
 }

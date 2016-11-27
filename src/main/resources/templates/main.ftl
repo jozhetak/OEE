@@ -123,7 +123,7 @@
                                     <a href='#' id="usuarios"> Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="#">Roles</a>
+                                    <a href="#" id="roles">Roles</a>
                                 </li>
                                 <li>
                                     <a href="#">Reportes de uso</a>

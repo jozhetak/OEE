@@ -1,6 +1,6 @@
 /**
- * users.js Contiene todas las funcionalidades específicas para el funcionamiento
- * de la pantalla de usuarios
+ * roles.js Contiene todas las funcionalidades específicas para el funcionamiento
+ * de la pantalla de roles
  * 
  * Ernesto Cantú
  * Conciencia
@@ -22,41 +22,36 @@ delete_options = {
     callBack     : null       // common callBack
 };
 
-var usersRestURL = 'rest/sysUser';
+var rolesRestURL = 'rest/sysRole';
+
+
 $(function () {    
     $('#grid').w2grid({ 
-        name: 'usersGrid', 
+        name: 'rolesGrid', 
         method: 'GET',
-        url: usersRestURL,
+        url: rolesRestURL,
         show: { 
             toolbar: true,
-            usersFormter: true,
+            rolesFormter: false,
             toolbarAdd: true,
             toolbarDelete: true,
             toolbarEdit: true
         },
         searches: [                
-            { field: 'userName', caption: 'User Name', type: 'text' },
-            { field: 'name', caption: 'Full Name', type: 'text' }
+            { field: 'codigo', caption: 'Codigo', type: 'text' }
         ],
         columns: [                
             { field: 'recid', caption: 'Id', size: '50px', sortable: true, attr: 'align=center' },
-            { field: 'userName', caption: 'User Name', size: '30%', sortable: true },
-            { field: 'name', caption: 'Full Name', size: '30%', sortable: true },
-            { field: 'rolName', caption: 'Rol', size: '40%' }
+            { field: 'codigo', caption: 'Código', size: '30%', sortable: true },
+            { field: 'descripcion', caption: 'Descripción', size: '30%', sortable: true }
         ],
-        actions:{
-            
-        },
         onAdd: function (event) {
-            //w2alert('add');
-            newObject = {};
-            openPopup(newObject);
+            //w2alert('add
+            openPopup(true);//informa a la funcion que se selecionó la opcion de agregar
         },
         onEdit: function (event) {
             //w2alert('edit');
-            objectToEdit = this.get(this.getSelection());
-            openPopup(objectToEdit);
+            openPopup(false); //informa a la funcion que se seleccionó la opcion de editar.
         },
         onDelete: function (event) {
             objectToDelete = this.get(this.getSelection())[0]; //regresa un array de objetos seleccionados
@@ -65,12 +60,12 @@ $(function () {
                     .yes(function(){
                         $.ajax({
                             type: 'POST',
-                            url: "rest/sysUser/delete",
+                            url: rolesRestURL + "/delete",
                             data: JSON.stringify(objectToDelete),
                             dataType: "json",
                             contentType: "application/json",
                             success: function (data) {
-                                w2ui['usersGrid'].reload();
+                                w2ui['rolesGrid'].reload();
                             },
                             error: function (data) {
                                 w2alert(data.responseJSON.error);
@@ -82,74 +77,102 @@ $(function () {
         }
         
     });   
+    
+    w2ui['rolesGrid'].hideColumn('recid');
 });
 
 
-function openPopup(user) {
-    if (!w2ui.usersForm) {
+function openPopup(isNew) {   
+    
+    if (!w2ui.rolesForm) {
         $().w2form({
-            name: 'usersForm',
+            name: 'rolesForm',
             style: 'border: 0px; background-color: transparent;',
-            formHTML: 
-                '<div class="w2ui-page page-0">'+
-                '    <div class="w2ui-field">'+
-                '        <label>Name:</label>'+
-                '        <div>'+
-                '           <input name="first_name" type="text" maxlength="100" style="width: 250px"/>'+
-                '        </div>'+
-                '    </div>'+
-                '    <div class="w2ui-field">'+
-                '        <label>Last Name:</label>'+
-                '        <div>'+
-                '            <input name="last_name" type="text" maxlength="100" style="width: 250px"/>'+
-                '        </div>'+
-                '    </div>'+
-                '    <div class="w2ui-field">'+
-                '        <label>Email:</label>'+
-                '        <div>'+
-                '            <input name="email" type="text" style="width: 250px"/>'+
-                '        </div>'+
-                '    </div>'+
-                '</div>'+
-                '<div class="w2ui-buttons">'+
-                '    <button class="w2ui-btn" name="reset">Reset</button>'+
-                '    <button class="w2ui-btn" name="save">Save</button>'+
-                '</div>',
             fields: [
-                { field: 'first_name', type: 'text', required: true },
-                { field: 'last_name', type: 'text', required: true },
-                { field: 'email', type: 'email' }
+                { field: 'recid', type: 'number', required: false, html: { caption: 'ID', attr: 'size="10" readonly' }},
+                { field: 'codigo', type: 'text', required: true },
+                { field: 'descripcion', type: 'text', required: false }
             ],
-            record: { 
-                first_name    : 'John',
-                last_name     : 'Doe',
-                email         : 'jdoe@email.com'
-            },
             actions: {
-                "save": function () { this.validate(); },
+                "save": function () { this.validate(); saveRole();},
                 "reset": function () { this.clear(); }
             }
         });
     }
+    
+    
     $().w2popup('open', {
-        title   : 'Form in a Popup',
+        title   : 'Roles',
         body    : '<div id="form" style="width: 100%; height: 100%;"></div>',
         style   : 'padding: 15px 0px 0px 0px',
         width   : 500,
         height  : 300, 
         showMax : true,
         onToggle: function (event) {
-            $(w2ui.usersForm.box).hide();
+            $(w2ui.rolesForm.box).hide();
             event.onComplete = function () {
-                $(w2ui.usersForm.box).show();
-                w2ui.usersForm.resize();
+                $(w2ui.rolesForm.box).show();
+                w2ui.rolesForm.resize();
             };
         },
         onOpen: function (event) {
             event.onComplete = function () {
                 // specifying an onOpen handler instead is equivalent to specifying an onBeforeOpen handler, which would make this code execute too early and hence not deliver.
-                $('#w2ui-popup #form').w2render('usersForm');
+                $('#w2ui-popup #form').w2render('rolesForm');
+                
             };
+        }
+    });
+    
+    if(!isNew){
+        //editar
+        rol = w2ui['rolesGrid'].get(w2ui['rolesGrid'].getSelection())[0];
+    }else{
+        rol = {recid:null,codigo:"",descripcion:""}; 
+    }
+    w2ui.rolesForm.record=rol;
+    w2ui.rolesForm.refresh();
+}
+
+/* Metodo que recibe la peticion del usuario de guardar un rol*/
+function saveRole(){
+    var record = w2ui.rolesForm.record;
+    if(!record.recid){
+        createRole(record);
+    }else{
+        updateRole(record);
+    }
+    $("#w2ui-popup").toggle();
+}
+
+function createRole(role){
+    $.ajax({
+        type: 'POST',
+        url: rolesRestURL + "/create",
+        data: JSON.stringify(role),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            w2ui['rolesGrid'].reload();
+        },
+        error: function (data) {
+            w2alert(data.responseJSON.error);
+        }
+    });
+}
+
+function updateRole(role){
+    $.ajax({
+        type: 'POST',
+        url: rolesRestURL + "/update",
+        data: JSON.stringify(role),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            w2ui['rolesGrid'].reload();
+        },
+        error: function (data) {
+            w2alert(data.responseJSON.error);
         }
     });
 }

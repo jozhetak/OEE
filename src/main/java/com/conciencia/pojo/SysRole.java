@@ -13,23 +13,23 @@ public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    private Integer id;
+    private Long recid;
     private String codigo;
     private String descripcion;
 
     public SysRole() {
     }
 
-    public SysRole(Integer id) {
-        this.id = id;
+    public SysRole(Long recid) {
+        this.recid = recid;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getRecid() {
+        return recid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRecid(Long recid) {
+        this.recid = recid;
     }
 
     public String getCodigo() {
@@ -51,18 +51,18 @@ public class SysRole implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (recid != null ? recid.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the recid fields are not set
         if (!(object instanceof SysRole)) {
             return false;
         }
         SysRole other = (SysRole) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.recid == null && other.recid != null) || (this.recid != null && !this.recid.equals(other.recid))) {
             return false;
         }
         return true;
@@ -70,7 +70,7 @@ public class SysRole implements Serializable {
 
     @Override
     public String toString() {
-        return "com.conciencia.pojo.Roles[ id=" + id + " ]";
+        return "com.conciencia.pojo.Roles[ id=" + recid + " ]";
     }
     
 }

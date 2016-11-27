@@ -49,8 +49,12 @@ public class HomeController {
     
     @RequestMapping(value={"/users"},method = RequestMethod.GET)
     public String users(ModelMap model,HttpServletRequest request) {
-        
         return "users";
+    }
+    
+    @RequestMapping(value={"/roles"},method = RequestMethod.GET)
+    public String roles(ModelMap model,HttpServletRequest request) {
+        return "roles";
     }
     
 }
