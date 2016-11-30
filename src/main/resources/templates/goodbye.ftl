@@ -4,10 +4,10 @@
     <head>
         <base href="${rc.getContextPath()}/" />
         <title><@spring.message "app.titulo"/></title>
-        <link rel="icon" href="favicon.ico">
-        <link rel="stylesheet" type="text/css" href="static/libs/normalize/normalize.css" />
-        <script type="text/javascript" src="static/libs/jquery/jquery-2.1.4.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="static/css/bootstrap2.css">
+        <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+        <link href="static/dist/css/sb-admin-2.css" rel="stylesheet">
+        <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <script type="text/javascript">

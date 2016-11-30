@@ -23,7 +23,7 @@ delete_options = {
 };
 
 var rolesRestURL = 'rest/sysRole';
-
+var popup;
 
 $(function () {    
     $('#grid').w2grid({ 
@@ -89,7 +89,6 @@ function openPopup(isNew) {
             name: 'rolesForm',
             style: 'border: 0px; background-color: transparent;',
             fields: [
-                { field: 'recid', type: 'number', required: false, html: { caption: 'ID', attr: 'size="10" readonly' }},
                 { field: 'codigo', type: 'text', required: true },
                 { field: 'descripcion', type: 'text', required: false }
             ],
@@ -101,7 +100,7 @@ function openPopup(isNew) {
     }
     
     
-    $().w2popup('open', {
+    popup = $().w2popup('open', {
         title   : 'Roles',
         body    : '<div id="form" style="width: 100%; height: 100%;"></div>',
         style   : 'padding: 15px 0px 0px 0px',
@@ -142,7 +141,7 @@ function saveRole(){
     }else{
         updateRole(record);
     }
-    $("#w2ui-popup").toggle();
+    popup.close();
 }
 
 function createRole(role){

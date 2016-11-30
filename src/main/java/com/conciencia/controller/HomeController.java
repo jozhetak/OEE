@@ -56,5 +56,5 @@ public class HomeController {
     public String roles(ModelMap model,HttpServletRequest request) {
         return "roles";
     }
-    
+
 }
