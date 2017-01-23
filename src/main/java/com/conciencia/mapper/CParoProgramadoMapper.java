@@ -5,16 +5,28 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 
 /**
- * Clase para consultas relacionadas con la tabla Maquinas
+ * Interfase que define las consultas relacionadas con la tabla Paros Programados
  *
  * @author Ernesto Cantu Valle
  * Conciencia
- * 18/11/2016
+ * 22/01/2017
  */
 public interface CParoProgramadoMapper {
-
-    @Select("SELECT* FROM paros_programados")
-    public List<CParoProgramado> findAll();
-
     
+    // <editor-fold defaultstate="collapsed" desc="CONSULTAS DEFINIDAS">
+    
+    static final String FIND_ALL = "SELECT "
+                                 + " id as recid,"
+                                 + " codigo,"
+                                 + " descripcion "
+                                 + "FROM paros_programados";
+    
+    // </editor-fold>
+    
+    /**
+     * Query que regresa todos los paros existentes
+     * @return lista de paros
+     */
+    @Select(FIND_ALL)
+    public List<CParoProgramado> findAll();    
 }

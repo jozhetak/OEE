@@ -1,46 +1,62 @@
 package com.conciencia.pojo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.util.Objects;
 
 /**
- * Clase Catálogo que representa a los registros en la tabla de máquinas de la bd
+ * Pojo que representa las maquinas del sistema. 
+ * 
+ * Observaciones: 
+ 
+ El Sistema deberá utilizar el código para comparar cuando
+ información provenga de un archivo CSV o del usuario.
+ 
+ El sistema internamente utilizará en la base de datos el recid para hacer
+ referencia a el en el proceso de cálculo de OEE.
+ 
+ El ordenamiento basado en Comparable está centrado en el recid. Este
+ será la propiedad usada para ordenar. Dos objetos son iguales si tienen el mismo recid
+ 
+ Las comparaciones de objetos de la clase están centradas en el código, ya que 
+ no puede haber dos objetos con el mísmo código. 
  * 
  * @author Ernesto Cantu Valle
  * Conciencia
- * 18/11/2016
+ * 22/01/2017
  */
-public class CMaquina implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class CMaquina implements Serializable,Comparable{
     
-    private Long id;
-    private Long idPlanta;
+    // <editor-fold defaultstate="collapsed" desc="PROPIEDADES">
+    
+    /** Id único. */
+    private Long recid;
+    
+    /** Código que será utilizado para que el usuario lo referencie*/
     private String codigo;
+    
+    /** Descripcion. Brinda información extra en el catálogo.*/
     private String descripcion;
-    private BigInteger unidadProduccion;
+    
+    /** Propiedad que contiene el recid de la unidad productiva resultado de la máquina */
+    private Long unidadProduccion;
 
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="CONSTRUCTOR">
+    
     public CMaquina() {
     }
 
-    public CMaquina(Long id) {
-        this.id = id;
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="GETTERS Y SETTERS">
+    
+    public Long getRecid() {
+        return recid;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getIdPlanta() {
-        return idPlanta;
-    }
-
-    public void setIdPlanta(Long idPlanta) {
-        this.idPlanta = idPlanta;
+    public void setRecid(Long recid) {
+        this.recid = recid;
     }
 
     public String getCodigo() {
@@ -59,37 +75,57 @@ public class CMaquina implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public BigInteger getUnidadProduccion() {
+    public Long getUnidadProduccion() {
         return unidadProduccion;
     }
 
-    public void setUnidadProduccion(BigInteger unidadProduccion) {
+    public void setUnidadProduccion(Long unidadProduccion) {
         this.unidadProduccion = unidadProduccion;
+    }
+    
+    
+    
+    // </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="SOBREESCRITOS">
+    
+    @Override
+    public String toString() {
+        return "CMaquina{" + "id=" + recid + ", codigo=" + codigo + '}';
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        CMaquina maquina = (CMaquina)o;
+        return this.recid < maquina.getRecid()? -1: this.recid.equals(maquina.getRecid())? 0:1;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CMaquina)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        CMaquina other = (CMaquina) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CMaquina other = (CMaquina) obj;
+        if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
     }
+    
+    // </editor-fold>
 
-    @Override
-    public String toString() {
-        return "com.conciencia.pojo.Maquinas[ id=" + id + " ]";
-    }
     
 }

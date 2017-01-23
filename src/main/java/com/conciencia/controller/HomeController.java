@@ -1,9 +1,6 @@
 package com.conciencia.controller;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,26 +21,26 @@ public class HomeController {
     public String index(ModelMap model,HttpServletRequest request) {
         //String message = utilMessageLocale.getMessageLocale("screen.welcome.message");
         //model.put("greeting");
-        String role = 
-                ((List<SimpleGrantedAuthority>) SecurityContextHolder.getContext().
-                        getAuthentication().getAuthorities()).get(0).getAuthority();
-        model.addAttribute("role", role);
-        if(role.equals("SA")){
-            model.addAttribute("role", role);
-            return "main";
-        }
-        
-        if(role.equals("ADMIN")){
-            return "main";
-        }
-        
-        if(role.equals("OPER")){
-            return "main";
-        }
-        
-        if(role.equals("CAL")){
-            return "main";
-        }
+//        String role = 
+//                ((List<SimpleGrantedAuthority>) SecurityContextHolder.getContext().
+//                        getAuthentication().getAuthorities()).get(0).getAuthority();
+//        model.addAttribute("role", role);
+//        if(role.equals("SA")){
+//            model.addAttribute("role", role);
+//            return "main";
+//        }
+//        
+//        if(role.equals("ADMIN")){
+//            return "main";
+//        }
+//        
+//        if(role.equals("OPER")){
+//            return "main";
+//        }
+//        
+//        if(role.equals("CAL")){
+//            return "main";
+//        }
         return "main";
     }
     

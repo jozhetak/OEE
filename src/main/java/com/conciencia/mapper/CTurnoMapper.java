@@ -5,16 +5,29 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 
 /**
- * Clase para consultas relacionadas con la tabla Turnos
+ * Interfase que define las consultas relacionadas con la tabla Turnos
  *
  * @author Ernesto Cantu Valle
  * Conciencia
- * 18/11/2016
+ * 22/01/2017
  */
 public interface CTurnoMapper {
-
-    @Select("SELECT* FROM turnos")
-    public List<CTurno> findAll();
-
     
+    // <editor-fold defaultstate="collapsed" desc="CONSULTAS DEFINIDAS">
+    
+    static final String FIND_ALL = "SELECT "
+                                 + " id as recid,"
+                                 + " codigo,"
+                                 + " descripcion,"
+                                 + " duracion "
+                                 + "FROM turnos";
+    
+    // </editor-fold>
+    
+    /**
+     * Query que regresa todas los turnos existentes
+     * @return lista de turnos
+     */
+    @Select(FIND_ALL)
+    public List<CTurno> findAll();    
 }
