@@ -6,6 +6,9 @@
  * Conciencia
  * 26/11/2016
  */
+
+
+//Objeto que contiene las propiedades para el manejo de la eliminación de registros
 delete_options = {
     msg          : 'Desea eliminar el registro?',
     title        : w2utils.lang('Eliminar?'),
@@ -22,9 +25,12 @@ delete_options = {
     callBack     : null       // common callBack
 };
 
+//variable que contiene la ruta a los servicios rest de roles
 var rolesRestURL = 'rest/sysRole';
 var popup;
 
+
+//Grid w2ui
 $(function () {    
     $('#grid').w2grid({ 
         name: 'rolesGrid', 
@@ -82,6 +88,7 @@ $(function () {
 });
 
 
+//Funcion que abre el popup del formulario de alta de roles
 function openPopup(isNew) {   
     
     if (!w2ui.rolesForm) {

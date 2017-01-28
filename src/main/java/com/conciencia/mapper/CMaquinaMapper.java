@@ -16,11 +16,14 @@ public interface CMaquinaMapper {
     // <editor-fold defaultstate="collapsed" desc="CONSULTAS DEFINIDAS">
     
     static final String FIND_ALL = "SELECT "
-                                 + " id as recid,"
-                                 + " codigo,"
-                                 + " descripcion,"
-                                 + " unidad_produccion as unidadProduccion "
-                                 + "FROM maquinas";
+                                 + " maquinas.id AS recid,"
+                                 + " maquinas.codigo,"
+                                 + " maquinas.descripcion,"
+                                 + " maquinas.unidad_produccion AS unidadProduccion,"
+                                 + " unidades_productivas.codigo AS codigoUnidadProduccion "
+                                 + "FROM maquinas "
+                                 + "LEFT JOIN unidades_productivas ON "
+                                 + "unidades_productivas.id = maquinas.unidad_produccion";
     
     // </editor-fold>
     

@@ -39,6 +39,9 @@ public class CMaquina implements Serializable,Comparable{
     
     /** Propiedad que contiene el recid de la unidad productiva resultado de la máquina */
     private Long unidadProduccion;
+    
+    /** Propiedad que contiene el código de la unidad productiva para mostrarla al usuario */
+    private String codigoUnidadProduccion;
 
     // </editor-fold>
     
@@ -82,8 +85,14 @@ public class CMaquina implements Serializable,Comparable{
     public void setUnidadProduccion(Long unidadProduccion) {
         this.unidadProduccion = unidadProduccion;
     }
-    
-    
+
+    public String getCodigoUnidadProduccion() {
+        return codigoUnidadProduccion;
+    }
+
+    public void setCodigoUnidadProduccion(String codigoUnidadProduccion) {
+        this.codigoUnidadProduccion = codigoUnidadProduccion;
+    }
     
     // </editor-fold>
 

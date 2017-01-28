@@ -34,7 +34,11 @@ public class CRateProduccion implements Serializable,Comparable{
     
     private Long maquina;
     
+    private String codigoMaquina;
+    
     private Long producto;
+    
+    private String codigoProducto;
     
     private BigDecimal unidadesMinuto;
 
@@ -64,6 +68,14 @@ public class CRateProduccion implements Serializable,Comparable{
     public void setMaquina(Long maquina) {
         this.maquina = maquina;
     }
+    
+    public String getCodigoMaquina(){
+        return this.codigoMaquina;
+    }
+    
+    public void setCodigoMaquina(String codigoMaquina){
+        this.codigoMaquina = codigoMaquina;
+    }
 
     public Long getProducto() {
         return producto;
@@ -71,6 +83,14 @@ public class CRateProduccion implements Serializable,Comparable{
 
     public void setProducto(Long producto) {
         this.producto = producto;
+    }
+    
+    public String getCodigoProducto(){
+        return this.codigoProducto;
+    }
+    
+    public void setCodigoProducto(String codigoProducto){
+        this.codigoProducto = codigoProducto;
     }
 
     public BigDecimal getUnidadesMinuto() {

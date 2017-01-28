@@ -38,6 +38,9 @@ public class CProducto implements Serializable,Comparable{
     private String descripcion;
     
     private Long unidadProductiva;
+    
+    /** Propiedad que contiene el código de la unidad productiva para mostrarla al usuario */
+    private String codigoUnidadProduccion;
 
     // </editor-fold>
     
@@ -82,6 +85,13 @@ public class CProducto implements Serializable,Comparable{
         this.unidadProductiva = unidadProductiva;
     }
     
+    public String getCodigoUnidadProduccion() {
+        return codigoUnidadProduccion;
+    }
+
+    public void setCodigoUnidadProduccion(String codigoUnidadProduccion) {
+        this.codigoUnidadProduccion = codigoUnidadProduccion;
+    }
     
     
     // </editor-fold>

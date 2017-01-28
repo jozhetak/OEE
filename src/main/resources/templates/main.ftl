@@ -53,45 +53,29 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Searchstatic.">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Catálogos del Sistema<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Plantas</a>
+                                    <a href="#" id="maquinas">Máquinas</a>
                                 </li>
                                 <li>
-                                    <a href="#">Máquinas</a>
+                                    <a href="#" id="turnos">Turnos</a>
                                 </li>
                                 <li>
-                                    <a href="#">Operadores</a>
+                                    <a href="#" id="paros">Paros Programados</a>
                                 </li>
                                 <li>
-                                    <a href="#">Turnos</a>
+                                    <a href="#" id="productos">Productos</a>
                                 </li>
                                 <li>
-                                    <a href="#">Paros Programados</a>
+                                    <a href="#" id="unidades">Unidades de Producción</a>
                                 </li>
                                 <li>
-                                    <a href="#">Productos</a>
-                                </li>
-                                <li>
-                                    <a href="#">Unidades de Producción</a>
-                                </li>
-                                <li>
-                                    <a href="#">Rates de Producción</a>
+                                    <a href="#" id="rates">Rates de Producción</a>
                                 </li>
                             </ul>
                         </li>

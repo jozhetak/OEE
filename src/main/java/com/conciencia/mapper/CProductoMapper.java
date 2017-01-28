@@ -16,11 +16,14 @@ public interface CProductoMapper {
     // <editor-fold defaultstate="collapsed" desc="CONSULTAS DEFINIDAS">
     
     static final String FIND_ALL = "SELECT "
-                                 + " id as recid,"
-                                 + " codigo,"
-                                 + " descripcion,"
-                                 + " unidad_produccion as unidadProduccion "
-                                 + "FROM productos";
+                                 + " productos.id as recid,"
+                                 + " productos.codigo,"
+                                 + " productos.descripcion,"
+                                 + " productos.unidad_produccion as unidadProduccion, "
+                                 + " unidades_productivas.codigo AS codigoUnidadProduccion "
+                                 + "FROM productos "
+                                 + "LEFT JOIN unidades_productivas ON "
+                                 + "unidades_productivas.id = productos.unidad_produccion";
     
     // </editor-fold>
     
