@@ -1,0 +1,34 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GENERA_OEE`(
+	IN `fecha` DATE
+)
+BEGIN
+	INSERT INTO oee_db.oee(turno,maquina,fecha,disponibilidad,rendimiento,calidad)
+    SELECT
+		S1.TURNO,
+		S1.MAQUINA,
+		S1.FECHA,
+		TRUNCATE((S1.TIEMPO_EFECTIVO_PROD / S1.DURACION_ASIGNACIONES),5) AS DISPONIBILIDAD,
+		TRUNCATE((S1.CANTIDAD_PRODUCIDA/S1.CANTIDAD_ESPERADA),5) AS RENDIMIENTO,
+		TRUNCATE((S1.ACEPTADAS/S1.CANTIDAD_PRODUCIDA),5) AS CALIDAD
+	FROM
+	(
+		SELECT
+			maquinas.ID AS MAQUINA,
+			turnos.ID AS TURNO,
+			asignaciones_programa_produccion.fecha AS FECHA,
+			SUM(asignaciones_programa_produccion.duracion) AS DURACION_ASIGNACIONES,
+			SUM(reportes_operador.tiempo_efectivo_produccion) AS TIEMPO_EFECTIVO_PROD,
+			SUM(rates_produccion.unidades_minuto) AS RATE_PROD,
+			SUM(reportes_operador.tiempo_efectivo_produccion*rates_produccion.unidades_minuto) AS CANTIDAD_ESPERADA,
+			SUM(reportes_operador.unidades_producidas) AS CANTIDAD_PRODUCIDA,
+			SUM(reportes_operador.unidades_aceptadas) AS ACEPTADAS 
+		FROM asignaciones_programa_produccion
+		JOIN maquinas ON asignaciones_programa_produccion.maquina = maquinas.id
+		JOIN productos ON asignaciones_programa_produccion.producto = productos.id
+		JOIN turnos ON asignaciones_programa_produccion.turno = turnos.id
+		JOIN reportes_operador ON asignaciones_programa_produccion.id = reportes_operador.asignacion
+		JOIN rates_produccion ON asignaciones_programa_produccion.maquina = rates_produccion.maquina AND asignaciones_programa_produccion.producto = rates_produccion.producto
+		WHERE asignaciones_programa_produccion.es_paro = 0 AND DATE(asignaciones_programa_produccion.fecha) = '2017-01-28'
+		GROUP BY asignaciones_programa_produccion.maquina,asignaciones_programa_produccion.turno,asignaciones_programa_produccion.fecha
+	) S1;
+END
