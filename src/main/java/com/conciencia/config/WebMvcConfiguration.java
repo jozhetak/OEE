@@ -1,10 +1,7 @@
 package com.conciencia.config;
 
-import freemarker.template.TemplateException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
 import javax.annotation.Resource;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +20,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 /**
  * Permite mapear el Dispachador de Servlets a '/' y a recursos estáticos.
@@ -45,26 +42,15 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     private static final String PROPERTY_NAME_MESSAGESOURCE_BASENAME = "message.source.basename";
     private static final String PROPERTY_NAME_MESSAGESOURCE_USE_CODE_AS_DEFAULT_MESSAGE = "message.source.use.code.as.default.message";
 
+    /**
+     * La constante VIEW_RESOLVER_PREFIX.
+     */
+    private static final String VIEW_RESOLVER_PREFIX = "/WEB-INF/views/";
 
     /**
-     * Constantes para vistas JSP
-    private static final String JSP_VIEW_RESOLVER_PREFIX = "jsp.resolver.prefix";
-    private static final String JSP_VIEW_RESOLVER_SUFFIX = "jsp.resolver.suffix";
+     * La constante VIEW_RESOLVER_SUFFIX.
      */
-
-    /**
-     * Constantes para vistas Freemarker
-     *
-     */
-    private static final String FTL_VIEW_RESOLVER_PREFIX = "freemarker.resolver.prefix";
-    private static final String FTL_VIEW_RESOLVER_SUFFIX = "freemarker.resolver.suffix";
-    private static final String FTL_TEMPLATES_PATH = "freemarker.templates.path";
-    private static final String FTL_CONTENT_TYPE = "freemarker.content.type";  
-    private static final String FTL_ENCODING = "freemarker.encoding";
-    private static final String FTL_CONTEXT_ATTRIBUTE = "freemarker.context.attribute";
-    private static final String FTL_SPRING_HELPER = "freemarker.spring.helper";
-    private static final String FTL_AUTO_IMPORT = "freemarker.auto.import";
-    private static final String FTL_SPRING_MACROS = "freemarker.spring.macros";
+    private static final String VIEW_RESOLVER_SUFFIX = ".jsp";
     
     /**
      * El atributo environment.
@@ -161,55 +147,16 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * correspondientes.
      *
      * @return La entidad de asociación de Vistas.
+     */
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix(environment.getRequiredProperty(JSP_VIEW_RESOLVER_PREFIX));
-        viewResolver.setSuffix(environment.getRequiredProperty(JSP_VIEW_RESOLVER_SUFFIX));
+        viewResolver.setPrefix(VIEW_RESOLVER_PREFIX);
+        viewResolver.setSuffix(VIEW_RESOLVER_SUFFIX);
 
         return viewResolver;
-    }
-     */
-
-    /**
-     * Método que permite asociar las rutas de las vistas a los archivos FTL
-     * correspondientes.Debe existir un bean FreeMarkerConfigurer.
-     *
-     * @return La entidad de asociación de Vistas.
-     */ 
-    @Bean
-    public ViewResolver viewResolver() {
-        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
-        resolver.setCache(true);
-        resolver.setPrefix(environment.getRequiredProperty(FTL_VIEW_RESOLVER_PREFIX));
-        resolver.setSuffix(environment.getRequiredProperty(FTL_VIEW_RESOLVER_SUFFIX));
-        resolver.setContentType(environment.getRequiredProperty(FTL_CONTENT_TYPE));
-        resolver.setExposeSpringMacroHelpers(environment.getRequiredProperty(FTL_SPRING_HELPER, Boolean.class));
-        resolver.setRequestContextAttribute(environment.getRequiredProperty(FTL_CONTEXT_ATTRIBUTE));
-        return resolver;
-    }
-
-    /**
-     * Método que permite configurar la transformación de páginas Freemaker.
-     * Debe existir un bean FreeMarkerViewResolver.
-     * 
-     * @return Regresa la instancia de configuración de Freemaker.
-     * @throws IOException
-     * @throws TemplateException 
-     */ 
-    @Bean
-    public FreeMarkerConfigurer freemarkerConfig() throws IOException, TemplateException {
-        FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
-        configurer.setTemplateLoaderPath(environment.getRequiredProperty(FTL_TEMPLATES_PATH));
-        configurer.setDefaultEncoding(environment.getRequiredProperty(FTL_ENCODING));
-        Properties settings = new Properties();
-        settings.put(environment.getRequiredProperty(FTL_AUTO_IMPORT), environment.getRequiredProperty(FTL_SPRING_MACROS)); 
-        configurer.setFreemarkerSettings(settings);
-        FreeMarkerConfigurer result = new FreeMarkerConfigurer();
-        result.setConfiguration(configurer.createConfiguration());
-        return result;
     }
     
     /**
