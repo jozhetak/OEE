@@ -1,14 +1,14 @@
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="url">${req.requestURL}</c:set>
+<base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/" />
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <%@page contentType="text/html;charset=UTF-8" language="java" %>
-        <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-        <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <c:set var="req" value="${pageContext.request}" />
-        <c:set var="uri" value="${req.requestURI}" />
-        <c:set var="url">${req.requestURL}</c:set>
-        <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/" />
         <title>ProEfficient</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

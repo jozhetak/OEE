@@ -53,7 +53,7 @@
                             <a href="#"><i class="fa fa-table fa-fw"></i> Catálogos del Sistema<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#" id="maquinas">Máquinas</a>
+                                    <a id="maquinas">Máquinas</a>
                                 </li>
                                 <li>
                                     <a href="#" id="turnos">Turnos</a>

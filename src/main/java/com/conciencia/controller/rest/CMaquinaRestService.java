@@ -2,6 +2,7 @@ package com.conciencia.controller.rest;
 
 
 import com.conciencia.pojo.CMaquina;
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.service.CMaquinaService;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,9 +40,13 @@ public class CMaquinaRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<CMaquina> getAll() {
+    public DataTableJsonResponse<CMaquina> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos las maquinas del sistema");
-        return service.findAll();
+        List<CMaquina> maquinas = service.findAll();
+        DataTableJsonResponse<CMaquina> response = new DataTableJsonResponse<>();
+        response.setData(maquinas);
+        
+        return response;
     }
     
     

@@ -28,7 +28,7 @@ $("#roles").on('click', function() {
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE MAQUINAS */
 $("#maquinas").on('click', function() {
    window.open('cmaquinas', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-            'menubar=no, scrollbars=1,modal=yes,width=' + 500 + ',height=' + 200);
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });
 
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE TURNOS */
