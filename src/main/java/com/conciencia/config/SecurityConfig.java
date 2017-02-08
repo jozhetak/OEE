@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 @ComponentScan(basePackages = {"com.conciencia.config.security",
                                 "com.conciencia.service"})
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -32,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .authenticationProvider(authenticationProvider)
                 .inMemoryAuthentication()
-                .withUser("user").password("user").roles("USER").and()
-                .withUser("admin").password("admin").roles("USER", "ADMIN");
+                .withUser("user").password("user").roles("OPER").and()
+                .withUser("admin").password("admin").roles("SA");
     }
 
     @Override

@@ -1,3 +1,11 @@
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="url">${req.requestURL}</c:set>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Conciencia" content="">
     <title>ProEfficient</title> <!-- i18n -->
-    <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/" />
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="static/dist/css/sb-admin-2.css" rel="stylesheet">
@@ -49,11 +57,12 @@
                         <li>
                             <a href=""><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
+                        <security:authorize access="hasAuthority('SA') or hasAuthority('ADMIN')">
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Cat醠ogos del Sistema<span class="fa arrow"></span></a> <!-- i18n -->
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Cat谩logos del Sistema<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a id="maquinas">M醧uinas</a>
+                                    <a id="maquinas">M谩quinas</a>
                                 </li>
                                 <li>
                                     <a id="turnos">Turnos</a>
@@ -65,46 +74,66 @@
                                     <a id="productos">Productos</a>
                                 </li>
                                 <li>
-                                    <a id="unidades">Unidades de Producci髇</a>
+                                    <a id="unidades">Unidades de Producci贸n</a>
                                 </li>
                                 <li>
-                                    <a id="rates">Rates de Producci髇</a>
+                                    <a id="rates">Rates de Producci贸n</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Programas de Producci髇<span class="fa arrow"></span></a> <!-- i18n -->
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Programas de Producci贸n<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Hist髍ico</a>
+                                    <a>Hist贸rico</a>
                                 </li>
                                 <li>
-                                    <a href="#">Cargar asignaciones</a>
+                                    <a>Cargar asignaciones</a>
                                 </li>
                                 <li>
-                                    <a href="#">Consultar asignaciones</a>
+                                    <a>Consultar asignaciones</a>
                                 </li>
                                 <li>
-                                    <a href="#">Generar Reporte</a>
+                                    <a>Generar Reportes</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        </security:authorize>
+                        <security:authorize access="hasAuthority('SA') or hasAuthority('OPER')">
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Administraci髇 de Sistema<span class="fa arrow"></span></a> <!-- i18n -->
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mis Asignaciones<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href='#' id="usuarios"> Usuarios</a>
+                                    <a>Reportar a una asignaci贸n</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="roles">Roles</a>
+                                    <a>Modificar una asignaci贸n</a>
                                 </li>
                                 <li>
-                                    <a href="#">Reportes de uso</a>
+                                    <a>Ver OEE del d铆a</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        </security:authorize>
+                        <security:authorize access="hasAuthority('SA')">
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Administraci贸n de Sistema<span class="fa arrow"></span></a> <!-- i18n -->
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a id="usuarios"> Usuarios</a>
+                                </li>
+                                <li>
+                                    <a id="roles">Roles</a>
+                                </li>
+                                <li>
+                                    <a>Reportes de uso</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        </security:authorize>
                     </ul>
                 </div>
             </div>
@@ -117,11 +146,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Dashboard Personalizado</h1>
-                        <h2><spring:message code="test.message" /></h2>
+                        <h1 class="page-header">ProEfficient 1.0</h1>
+                        <h2>Asignaciones del d铆a</h2>
+                        <hr>
+                        <br>
+                        <table id="asignaciones" class="display">
+                        </table>
                     </div>
                 </div>
-                <!-- /.row -->
             </div>
         </div>
 
@@ -131,5 +163,10 @@
     <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
     <script src="static/dist/js/sb-admin-2.js"></script>
     <script src="static/js/main.js"></script>
+    <script src="static/vendor/datatables/js/jquery.dataTables.js"></script>
+    <link href="static/vendor/datatables/css/jquery.dataTables.css" rel="stylesheet">
+    <script src="static/vendor/datatables/js/dataTables.bootstrap.js"></script>
+    <input type="text" hidden="true" id="userId" value="${user.recid}"></input>
+    <input type="text" hidden="true" id="userRole" value="${user.rolName}"></input>
 </body>
 </html>

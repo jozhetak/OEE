@@ -21,6 +21,17 @@ public interface OAsignacionDiaService {
      * 
      * @return una lista de Asignaciones
      */
-    public List<OAsignacionDia> findAll(Long maquina);
+    public List<OAsignacionDia> findAll();
+    
+    /**
+     * Método que regresa una lista de asignaciones para un operador
+     * 
+     * Utilizado por:
+     * 
+     * 1.- Grid (Rest Service - getAll)
+     * 
+     * @return una lista de Asignaciones
+     */
+    public List<OAsignacionDia> findAllByOperador(Long id);
     
 }

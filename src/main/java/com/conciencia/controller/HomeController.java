@@ -1,6 +1,11 @@
 package com.conciencia.controller;
 
+import com.conciencia.pojo.SysUser;
+import com.conciencia.service.SysUserService;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,33 +21,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
     
-    
+    @Resource
+    SysUserService sysUserService;
+        
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN') or hasAuthority('OPER')")
     @RequestMapping(value={"/","/index"},method = RequestMethod.GET)
     public String index(ModelMap model,HttpServletRequest request) {
-        //<editor-fold>
-        //String message = utilMessageLocale.getMessageLocale("screen.welcome.message");
-        //model.put("greeting");
-//        String role = 
-//                ((List<SimpleGrantedAuthority>) SecurityContextHolder.getContext().
-//                        getAuthentication().getAuthorities()).get(0).getAuthority();
-//        model.addAttribute("role", role);
-//        if(role.equals("SA")){
-//            model.addAttribute("role", role);
-//            return "main";
-//        }
-//        
-//        if(role.equals("ADMIN")){
-//            return "main";
-//        }
-//        
-//        if(role.equals("OPER")){
-//            return "main";
-//        }
-//        
-//        if(role.equals("CAL")){
-//            return "main";
-//        }
-        //</editor-fold>
+        String userName = 
+                SecurityContextHolder.getContext().
+                        getAuthentication().getName();
+        
+        SysUser user = sysUserService.findByUserName(userName);
+        
+        model.addAttribute("user", user);
+        
+        
         return "main";
     }
     
@@ -52,6 +45,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de usuarios
      */
+    @PreAuthorize("hasAuthority('SA')")
     @RequestMapping(value={"/users"},method = RequestMethod.GET)
     public String users(ModelMap model,HttpServletRequest request) {
         return "users";
@@ -63,6 +57,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de roles.
      */
+    @PreAuthorize("hasAuthority('SA')")
     @RequestMapping(value={"/roles"},method = RequestMethod.GET)
     public String roles(ModelMap model,HttpServletRequest request) {
         return "roles";
@@ -74,6 +69,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de máquinas.
      */
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cmaquinas"},method = RequestMethod.GET)
     public String maquinas(ModelMap model,HttpServletRequest request) {
         return "maquinas";
@@ -85,6 +81,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de turnos.
      */
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cturnos"},method = RequestMethod.GET)
     public String turnos(ModelMap model,HttpServletRequest request) {
         return "turnos";
@@ -96,6 +93,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de turnos.
      */
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cparosProgramados"},method = RequestMethod.GET)
     public String paros(ModelMap model,HttpServletRequest request) {
         return "paros_programados";
@@ -107,6 +105,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de productos.
      */
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cproductos"},method = RequestMethod.GET)
     public String productos(ModelMap model,HttpServletRequest request) {
         return "productos";
@@ -118,6 +117,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de unidades productivas.
      */
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cunidades"},method = RequestMethod.GET)
     public String unidades(ModelMap model,HttpServletRequest request) {
         return "unidades_productivas";
@@ -129,6 +129,7 @@ public class HomeController {
      * @param request
      * @return la pantalla de unidades productivas.
      */
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/crates"},method = RequestMethod.GET)
     public String ratesProduccion(ModelMap model,HttpServletRequest request) {
         return "rates_produccion";

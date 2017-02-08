@@ -1,6 +1,7 @@
 package com.conciencia.controller.rest;
 
 
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.pojo.OAsignacionDia;
 import com.conciencia.service.OAsignacionDiaService;
 import java.util.List;
@@ -38,13 +39,29 @@ public class OAsignacionDiaRestService {
      * Método que regresa todas las asignaciones para una maquinas dada
      * @return lista de asignaciones por maquinas
      */
-    @RequestMapping(value="/{maquina}",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<OAsignacionDia> getAll(@PathVariable("maquina")Long maquina) {
+    public DataTableJsonResponse<OAsignacionDia> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos las maquinas del sistema");
-        return service.findAll(maquina);
+        List<OAsignacionDia> asignacionesDia = service.findAll();
+        DataTableJsonResponse<OAsignacionDia> response = new DataTableJsonResponse<>();
+        response.setData(asignacionesDia);
+        return response;
     }
     
+    /**
+     * Método que regresa todas las asignaciones para una maquinas dada
+     * @return lista de asignaciones por maquinas
+     */
+    @RequestMapping(value="/{operador}",method = RequestMethod.GET)
+    @ResponseBody
+    public DataTableJsonResponse<OAsignacionDia> getAllByOperador(@PathVariable("operador")Long operador) {
+        LOG.log(Level.INFO,"Obteniendo Todos las asignaciones del sistema para el operador dado");
+        List<OAsignacionDia> asignacionesDia = service.findAllByOperador(operador);
+        DataTableJsonResponse<OAsignacionDia> response = new DataTableJsonResponse<>();
+        response.setData(asignacionesDia);
+        return response;
+    }
     
     
     /**

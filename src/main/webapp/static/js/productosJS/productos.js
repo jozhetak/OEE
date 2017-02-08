@@ -17,7 +17,7 @@ $(document).ready(function(){
             { "data": "recid" },
             { "data": "codigo" },
             { "data": "descripcion" },
-            { "data": "unidadProduccion" },
+            { "data": "unidadProductiva" },
             { "data": "codigoUnidadProduccion" }
         ],
         "columnDefs": [

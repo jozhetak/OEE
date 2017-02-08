@@ -37,8 +37,11 @@ public class OAsignacionDia implements Serializable,Comparable{
     /** Código del turno correspondiente */
     private String codigoTurno;
     
+    /** Usuario quien tiene asignada esta tarea. */
+    private Long operador;
+    
     /** Operador quien se espera realice la asignación*/
-    private String operador;
+    private String nombreOperador;
     
     /** Duración en minutos de la asignación*/
     private BigDecimal duracion;
@@ -116,12 +119,20 @@ public class OAsignacionDia implements Serializable,Comparable{
         this.codigoTurno = codigoTurno;
     }
 
-    public String getOperador() {
+    public Long getOperador() {
         return operador;
     }
 
-    public void setOperador(String operador) {
+    public void setOperador(Long operador) {
         this.operador = operador;
+    }
+
+    public String getNombreOperador() {
+        return nombreOperador;
+    }
+
+    public void setNombreOperador(String nombreOperador) {
+        this.nombreOperador = nombreOperador;
     }
 
     public BigDecimal getDuracion() {

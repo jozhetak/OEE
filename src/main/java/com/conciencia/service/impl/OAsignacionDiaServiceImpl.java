@@ -29,8 +29,23 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
      * 
      * @return una lista de asignaciones por máquina
      */
-    public List<OAsignacionDia> findAll(Long maquina){
-        return asignacionDiaMapper.findAll(maquina);
+    @Override
+    public List<OAsignacionDia> findAll(){
+        return asignacionDiaMapper.findAll();
+    }
+
+    /**
+     * Método que regresa una lista de asignaciones para un operador
+     * 
+     * Utilizado por:
+     * 
+     * 1.- Grid (Rest Service - getAll)
+     * 
+     * @return una lista de Asignaciones
+     */
+    @Override
+    public List<OAsignacionDia> findAllByOperador(Long id) {
+        return asignacionDiaMapper.findAllByOperador(id);
     }
     
 }
