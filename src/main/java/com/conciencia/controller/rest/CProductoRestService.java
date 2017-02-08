@@ -2,6 +2,7 @@ package com.conciencia.controller.rest;
 
 
 import com.conciencia.pojo.CProducto;
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.service.CProductoService;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,9 +40,12 @@ public class CProductoRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<CProducto> getAll() {
+    public DataTableJsonResponse<CProducto> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos los productos del sistema");
-        return service.findAll();
+        List<CProducto> productos = service.findAll();
+        DataTableJsonResponse<CProducto> response = new DataTableJsonResponse<>();
+        response.setData(productos);
+        return response;
     }
     
     

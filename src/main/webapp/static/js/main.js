@@ -34,29 +34,29 @@ $("#maquinas").on('click', function() {
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE TURNOS */
 $("#turnos").on('click', function() {
    window.open('cturnos', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-            'menubar=no, scrollbars=1,modal=yes,width=' + 500 + ',height=' + 200);
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });
 
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE PAROS PROGRAMADOS */
 $("#paros").on('click', function() {
    window.open('cparosProgramados', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-            'menubar=no, scrollbars=1,modal=yes,width=' + 500 + ',height=' + 200);
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });
 
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE PAROS PROGRAMADOS */
 $("#productos").on('click', function() {
    window.open('cproductos', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-            'menubar=no, scrollbars=1,modal=yes,width=' + 500 + ',height=' + 200);
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });
 
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE UNIDADES PRODUCTIVAS */
 $("#unidades").on('click', function() {
    window.open('cunidades', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-            'menubar=no, scrollbars=1,modal=yes,width=' + 500 + ',height=' + 200);
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });
 
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE RATES DE PRODUCCION */
 $("#rates").on('click', function() {
    window.open('crates', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-            'menubar=no, scrollbars=1,modal=yes,width=' + 500 + ',height=' + 200);
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });

@@ -19,7 +19,7 @@ public interface CProductoMapper {
                                  + " productos.id as recid,"
                                  + " productos.codigo,"
                                  + " productos.descripcion,"
-                                 + " productos.unidad_produccion as unidadProduccion, "
+                                 + " productos.unidad_produccion as unidadProductiva, "
                                  + " unidades_productivas.codigo AS codigoUnidadProduccion "
                                  + "FROM productos "
                                  + "LEFT JOIN unidades_productivas ON "

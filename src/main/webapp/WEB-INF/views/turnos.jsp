@@ -9,9 +9,9 @@
 <html>
 <head>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/" />
-    <title>Máquinas</title>
+    <title>Turnos</title>
     <script src="static/vendor/jquery/jquery.js"></script>
-    <script type="text/javascript" src="static/js/maquinasJS/maquinas.js"></script>
+    <script type="text/javascript" src="static/js/turnosJS/turnos.js"></script>
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="static/vendor/datatables/js/jquery.dataTables.js"></script>
     <link href="static/vendor/datatables/css/jquery.dataTables.css" rel="stylesheet">
@@ -28,14 +28,13 @@
 </head>
 <body>
     <div id="container">
-        <table id="maquinas" class="display">
+        <table id="turnos" class="display">
             <thead>
                 <tr>
                     <th>Record Id</th>
                     <th style="width:33%">Código</th>
                     <th style="width:33%">Descripción</th>
-                    <th>Unidad Productiva</th>
-                    <th style="width:33%">Código Unidad Productiva</th>
+                    <th style="width:33%">Duración</th>
                 </tr>
             </thead>
         </table>

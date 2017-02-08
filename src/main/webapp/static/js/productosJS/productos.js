@@ -10,31 +10,28 @@
 
 var productosRestURL = 'rest/cProducto';
 
-$(function () {    
-    $('#grid').w2grid({ 
-        name: 'productosGrid', 
-        method: 'GET',
-        url: productosRestURL,
-        fixedBody: false, // calcula la altura del grid en base al número de columnas.
-        show: { 
-            toolbar: false,
-            usersFormter: false,
-            toolbarAdd: false,
-            toolbarDelete: false,
-            toolbarEdit: false
-        },
-        searches: [                
-            { field: 'codigo', caption: 'Código', type: 'text' },
-            { field: 'codigoUnidadProductiva', caption: 'Unidad Productiva', type: 'text' }
+$(document).ready(function(){
+   $('#productos').DataTable({
+        "ajax": productosRestURL,
+        "columns": [
+            { "data": "recid" },
+            { "data": "codigo" },
+            { "data": "descripcion" },
+            { "data": "unidadProduccion" },
+            { "data": "codigoUnidadProduccion" }
         ],
-        columns: [                
-            { field: 'recid', caption: 'Id', size: '50px', sortable: false},
-            { field: 'codigo', caption: 'Código', size: '33%', sortable: false },
-            { field: 'descripcion', caption: 'Descripción', size: '33%', sortable: false },
-            { field: 'unidadProduccion', caption: 'Unidad Productiva', size: '50px' },
-            { field: 'codigoUnidadProduccion', caption: 'Unidad Productiva', size: '33%' }
-        ]
-    });
-    
-    w2ui['productosGrid'].hideColumn('recid', 'unidadProduccion');
+        "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [ 3 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+        "paging":false
+    });    
 });

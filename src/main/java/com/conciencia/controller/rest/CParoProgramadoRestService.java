@@ -2,6 +2,7 @@ package com.conciencia.controller.rest;
 
 
 import com.conciencia.pojo.CParoProgramado;
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.service.CParoProgramadoService;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,9 +40,12 @@ public class CParoProgramadoRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<CParoProgramado> getAll() {
+    public DataTableJsonResponse<CParoProgramado> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos los paros programados del sistema");
-        return service.findAll();
+        List<CParoProgramado> paros = service.findAll();
+        DataTableJsonResponse<CParoProgramado> response = new DataTableJsonResponse<>();
+        response.setData(paros);
+        return response;
     }
     
     

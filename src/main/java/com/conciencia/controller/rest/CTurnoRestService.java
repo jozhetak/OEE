@@ -2,6 +2,7 @@ package com.conciencia.controller.rest;
 
 
 import com.conciencia.pojo.CTurno;
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.service.CTurnoService;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,9 +40,12 @@ public class CTurnoRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<CTurno> getAll() {
+    public DataTableJsonResponse<CTurno> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos los turnos del sistema");
-        return service.findAll();
+        List<CTurno> turnos = service.findAll();
+        DataTableJsonResponse<CTurno> response = new DataTableJsonResponse<>();
+        response.setData(turnos);
+        return response;
     }
     
     

@@ -10,29 +10,22 @@
 
 var paroRestURL = 'rest/cParoProgramado';
 
-$(function () {    
-    $('#grid').w2grid({ 
-        name: 'parosGrid', 
-        method: 'GET',
-        url: paroRestURL,
-        fixedBody: false, // calcula la altura del grid en base al número de columnas.
-        show: { 
-            toolbar: false,
-            usersFormter: false,
-            toolbarAdd: false,
-            toolbarDelete: false,
-            toolbarEdit: false
-        },
-        searches: [                
-            { field: 'codigo', caption: 'Código', type: 'text' },
-            { field: 'codigoUnidadProductiva', caption: 'Unidad Productiva', type: 'text' }
+
+$(document).ready(function(){
+   $('#paros').DataTable({
+        "ajax": paroRestURL,
+        "columns": [
+            { "data": "recid" },
+            { "data": "codigo" },
+            { "data": "descripcion" }
         ],
-        columns: [                
-            { field: 'recid', caption: 'Id', size: '50px', sortable: false},
-            { field: 'codigo', caption: 'Código', size: '33%', sortable: true },
-            { field: 'descripcion', caption: 'Descripción', size: '33%', sortable: true }
-        ]
-    });
-    
-    w2ui['parosGrid'].hideColumn('recid');
+        "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+        "paging":false
+    });    
 });

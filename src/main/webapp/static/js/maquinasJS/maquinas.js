@@ -14,9 +14,23 @@ $(document).ready(function(){
    $('#maquinas').DataTable({
         "ajax": maquinasRestURL,
         "columns": [
+            { "data": "recid" },
             { "data": "codigo" },
             { "data": "descripcion" },
+            { "data": "unidadProduccion" },
             { "data": "codigoUnidadProduccion" }
+        ],
+        "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [ 3 ],
+                "visible": false,
+                "searchable": false
+            }
         ],
         "paging":false
     });    

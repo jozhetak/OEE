@@ -56,19 +56,19 @@
                                     <a id="maquinas">Máquinas</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="turnos">Turnos</a>
+                                    <a id="turnos">Turnos</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="paros">Paros Programados</a>
+                                    <a id="paros">Paros Programados</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="productos">Productos</a>
+                                    <a id="productos">Productos</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="unidades">Unidades de Producción</a>
+                                    <a id="unidades">Unidades de Producción</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="rates">Rates de Producción</a>
+                                    <a id="rates">Rates de Producción</a>
                                 </li>
                             </ul>
                         </li>

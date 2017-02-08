@@ -10,32 +10,34 @@
 
 var ratesRestURL = 'rest/cRateProduccion';
 
-$(function () {    
-    $('#grid').w2grid({ 
-        name: 'ratesGrid', 
-        method: 'GET',
-        url: ratesRestURL,
-        fixedBody: false, // calcula la altura del grid en base al número de columnas.
-        show: { 
-            toolbar: false,
-            usersFormter: false,
-            toolbarAdd: false,
-            toolbarDelete: false,
-            toolbarEdit: false
-        },
-        searches: [                
-            { field: 'codigo', caption: 'Código', type: 'text' },
-            { field: 'codigoUnidadProductiva', caption: 'Unidad Productiva', type: 'text' }
+$(document).ready(function(){
+   $('#rates').DataTable({
+        "ajax": ratesRestURL,
+        "columns": [
+            { "data": "recid" },
+            { "data": "maquina" },
+            { "data": "codigoMaquina" },
+            { "data": "producto" },
+            { "data": "codigoProducto" },
+            { "data": "unidadesMinuto" }
         ],
-        columns: [                
-            { field: 'recid', caption: 'Id', size: '50px', sortable: false},
-            { field: 'maquina', caption: 'Máquina', size: '50px' },
-            { field: 'codigoMaquina', caption: 'Máquina', size: '33%', sortable: false },
-            { field: 'producto', caption: 'Producto', size: '50px' },
-            { field: 'codigoProducto', caption: 'Producto', size: '33%', sortable: false },
-            { field: 'unidadesMinuto', caption: 'Unidades/Minuto', size: '33%' }
-        ]
-    });
-    
-    w2ui['ratesGrid'].hideColumn('recid', 'maquina','producto');
+        "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [ 1 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": [ 3 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+        "paging":false
+    });    
 });

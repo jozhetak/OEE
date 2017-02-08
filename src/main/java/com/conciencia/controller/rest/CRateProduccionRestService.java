@@ -2,6 +2,7 @@ package com.conciencia.controller.rest;
 
 
 import com.conciencia.pojo.CRateProduccion;
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.service.CRateProduccionService;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,9 +40,12 @@ public class CRateProduccionRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<CRateProduccion> getAll() {
+    public DataTableJsonResponse<CRateProduccion> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos los usuarios del sistema");
-        return service.findAll();
+        List<CRateProduccion> ratesProduccion = service.findAll();
+        DataTableJsonResponse<CRateProduccion> response = new DataTableJsonResponse<>();
+        response.setData(ratesProduccion);
+        return response;
     }
     
     

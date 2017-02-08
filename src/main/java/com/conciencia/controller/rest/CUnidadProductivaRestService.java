@@ -2,6 +2,7 @@ package com.conciencia.controller.rest;
 
 
 import com.conciencia.pojo.CUnidadProductiva;
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.service.CUnidadProductivaService;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,9 +40,12 @@ public class CUnidadProductivaRestService {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<CUnidadProductiva> getAll() {
+    public DataTableJsonResponse<CUnidadProductiva> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos las unidades productivas del sistema");
-        return service.findAll();
+        List<CUnidadProductiva> unidadesProductivas = service.findAll();
+        DataTableJsonResponse<CUnidadProductiva> response = new DataTableJsonResponse<>();
+        response.setData(unidadesProductivas);
+        return response;
     }
     
     
