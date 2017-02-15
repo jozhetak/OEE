@@ -115,7 +115,7 @@ public class SysUploadController {
                     attributes.addFlashAttribute(MODEL_ATTRIBUTE_CSVFILE, newFile.getPath());
                     
                     String nuevaRuta = ruta.concat(PROCESS_CSV_PATH); //Redireccion.
-                    return createRedirectViewPath(nuevaRuta);
+                    return "/"; //createRedirectViewPath(nuevaRuta);
                 }
             }
             return createRedirectViewPath("/");

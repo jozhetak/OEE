@@ -51,6 +51,14 @@ public class HomeController {
         return "users";
     }
     
+    
+    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
+    @RequestMapping(value={"/oasignacionesLoad"},method = RequestMethod.POST)
+    public String loadFile(ModelMap model,HttpServletRequest request) {
+        return "users";
+    }
+    
+    
     /**
      * Controlador que responde a la solicitud de la pantalla de roles.
      * @param model

@@ -88,7 +88,7 @@
                                     <a>Histórico</a>
                                 </li>
                                 <li>
-                                    <a>Cargar asignaciones</a>
+                                    <a id="asignaciones">Cargar asignaciones</a>
                                 </li>
                                 <li>
                                     <a>Consultar asignaciones</a>

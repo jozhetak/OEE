@@ -62,6 +62,19 @@ $("#rates").on('click', function() {
 });
 
 
+/****************************************************************************/
+
+//asignaciones
+
+/* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE CARGAR ASIGNACIONES */
+$("#asignaciones").on('click', function() {
+   window.open('oasignacionesLoad', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
+          'menubar=no, scrollbars=1,modal=yes,width=' + 800 + ',height=' + 400);
+  
+});
+
+
+/****************************************************************************/
 //URL que define la ruta de acceso al rest de asignaciones
 var asignacionesRestURLBase = 'rest/oAsignacion';
 
