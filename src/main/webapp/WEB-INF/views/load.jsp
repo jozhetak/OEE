@@ -22,12 +22,11 @@
     <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div id="wrapper">
-        <form action="uploadFile" method="post">
-            <input type="text" id="ruta" name ="ruta"></input>
-            <input type="file" accept="csv"></input>
-        </form>
-    </div>
+    <form id="contenidoUploadForm" name="contenidoUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">
+        <input type="file" id="FileData" name="FileData" accept=".csv">
+        <input type="text" id="Ruta" name="Ruta" value="/oAsignaciones">
+        <input type="submit">
+    </form>
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/vendor/metisMenu/metisMenu.min.js"></script>

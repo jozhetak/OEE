@@ -51,11 +51,16 @@ public class HomeController {
         return "users";
     }
     
-    
+    /**
+     * Controlador que me regresará la pantalla de carga de asignaciones
+     * @param model
+     * @param request
+     * @return 
+     */
     @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/oasignacionesLoad"},method = RequestMethod.POST)
     public String loadFile(ModelMap model,HttpServletRequest request) {
-        return "users";
+        return "load";
     }
     
     
