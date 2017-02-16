@@ -32,5 +32,17 @@ public class CTurnoServiceImpl implements CTurnoService {
     public List<CTurno> findAll(){
         return turnoMapper.findAll();
     }
+
+    @Override
+    public Integer getTurnoOrder(String code) {
+        
+        if(code.equalsIgnoreCase("matutino"))
+            return 1;
+        if(code.equalsIgnoreCase("vespertino"))
+            return 2;
+        else
+            return 3;
+    }
+    
     
 }

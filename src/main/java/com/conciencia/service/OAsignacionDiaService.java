@@ -30,8 +30,16 @@ public interface OAsignacionDiaService {
      * 
      * 1.- Grid (Rest Service - getAll)
      * 
+     * @param id del operador
      * @return una lista de Asignaciones
      */
     public List<OAsignacionDia> findAllByOperador(Long id);
+    
+    /**
+     * Método que se encargará de validar e insertar las asignaciones del día así
+     * como generar un reporte correspondiente
+     * @param asignacionesDia Lista de asignaciones
+     */
+    public void insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia);
     
 }

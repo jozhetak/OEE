@@ -23,4 +23,10 @@ public interface CTurnoService {
      */
     public List<CTurno> findAll();
     
+    /**
+     * Método que dado el código de un turno, regresa un código para su orden 
+     * @param code
+     * @return el orden del turno
+     */
+    public Integer getTurnoOrder(String code);
 }
