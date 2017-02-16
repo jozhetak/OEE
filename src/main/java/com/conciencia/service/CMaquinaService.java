@@ -23,4 +23,17 @@ public interface CMaquinaService {
      */
     public List<CMaquina> findAll();
     
+    /**
+     * Método que permite ubicar una máquina a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener la máquina en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código de la máquina
+     * @return el id de la máquina
+     */
+    public Long findByCode(String code);
+    
 }

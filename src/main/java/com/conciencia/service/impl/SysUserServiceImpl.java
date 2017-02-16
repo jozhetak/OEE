@@ -43,7 +43,7 @@ public class SysUserServiceImpl implements SysUserService{
     /**
      * Método que obtiene un usuario por su id.
      * 
-     * @param id el id de usuario a buscar
+     * @param recid el id de usuario a buscar
      * @return el objeto SysUser
      */
     @Override
@@ -62,6 +62,23 @@ public class SysUserServiceImpl implements SysUserService{
     public SysUser findByUserName(String userName) {
         LOG.log(Level.INFO, "BUSCANDO AL USUARIO CON USERNAME: {0}", userName);
         return sysUserMapper.findByUserName(userName);
+    }
+    
+    /**
+     * Método que permite ubicar un usuario a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener el usuario en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código del usuario
+     * @return el id de usuario
+     */
+    @Override
+    public Long findByCode(String code) {
+        Long user = sysUserMapper.findByCode(code);
+        return user;
     }
 
     /**

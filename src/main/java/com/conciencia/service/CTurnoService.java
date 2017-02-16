@@ -24,9 +24,15 @@ public interface CTurnoService {
     public List<CTurno> findAll();
     
     /**
-     * Método que dado el código de un turno, regresa un código para su orden 
-     * @param code
-     * @return el orden del turno
+     * Método que permite ubicar un turno a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener el turno en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código del turno
+     * @return el id del turno
      */
-    public Integer getTurnoOrder(String code);
+    public Long findByCode(String code);
 }

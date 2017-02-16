@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface SysUserMapper {
     
+    // <editor-fold defaultstate="collapsed" desc="CONSULTAS DEFINIDAS">
     static final String FIND_ALL = "SELECT " +
                                     "usuarios.id_usuario as recid," +
                                     "usuarios.user_name as userName,"+
@@ -53,6 +54,10 @@ public interface SysUserMapper {
                                             "usuarios.rol_id = roles.id " +
                                             "WHERE user_name = #{userName}";
     
+    static final String FIND_USER_ID_BY_USER_NAME =   "SELECT "
+                                                    + " usuarios.id_usuario "
+                                                    + "FROM usuarios WHERE usuarios.user_name = #{code}";
+    
     static final String INSERT_USER = "INSERT INTO `oee_db`.`usuarios`(" +
                                         "`user_name`," +
                                         "`password`," +
@@ -73,6 +78,8 @@ public interface SysUserMapper {
                                       "WHERE `id_usuario` = #{recid};";
     
     static final String DELETE_USER = "DELETE FROM `oee_db`.`usuarios` WHERE id_usuario = #{recid}";
+    
+    // </editor-fold>
 
     /**
      * Regresa la lista de usuarios existentes
@@ -97,6 +104,15 @@ public interface SysUserMapper {
     @Select(FIND_BY_USER_NAME)
     public SysUser findByUserName(String userName);
 
+    /**
+     * Query que me permite ubicar un registro de la tabla de Usuarios a partir de
+     * un código. 
+     * @param code el código bajo el cual se busca
+     * @return el id del registro.
+     */
+    @Select(FIND_USER_ID_BY_USER_NAME)
+    public Long findByCode(String code);
+    
     /**
      * Inserta un usuario nuevo al sistema
      * @param usuario el usuario a insertar

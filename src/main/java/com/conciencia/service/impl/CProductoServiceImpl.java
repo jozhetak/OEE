@@ -33,4 +33,20 @@ public class CProductoServiceImpl implements CProductoService {
         return productoMapper.findAll();
     }
     
+    /**
+     * Método que permite ubicar una máquina a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener la máquina en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código de la máquina
+     * @return la máquina completa
+     */
+    @Override
+    public Long findByCode(String code) {
+        Long idProducto = productoMapper.findByCode(code);
+        return idProducto;
+    }
 }

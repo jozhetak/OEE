@@ -22,7 +22,7 @@ public interface SysUserService {
     /**
      * Método que obtiene un usuario por su id.
      * 
-     * @param id el id de usuario a buscar
+     * @param recid
      * @return el objeto SysUser
      */
     public SysUser findById(Long recid);
@@ -36,9 +36,23 @@ public interface SysUserService {
     public SysUser findByUserName(String userName);
     
     /**
+     * Método que permite ubicar un usuario a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener al usuario en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código del usuario
+     * @return el id del usuario
+     */
+    public Long findByCode(String code);
+    
+    /**
      * Método que da de alta un objeto SysUser
      * @param user Objeto a dar de alta
      * @return objeto insertado
+     * @throws java.lang.Exception
      */
     public SysUser createUser(SysUser user) throws Exception;
     
@@ -46,6 +60,7 @@ public interface SysUserService {
      * Método que permite actualizar un objeto SysUser
      * @param user objeto a actualizar
      * @return Objeto actualizado
+     * @throws java.lang.Exception
      */
     public SysUser updateUser(SysUser user) throws Exception;
     
@@ -53,6 +68,7 @@ public interface SysUserService {
      * Método que permite eliminar un objeto SysUser
      * @param user el id del objeto SysUser a eliminar
      * @return si la operación se realizó con éxito.
+     * @throws java.lang.Exception
      */
     public Boolean deleteUser(Long user) throws Exception;
 }

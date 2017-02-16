@@ -32,5 +32,22 @@ public class CMaquinaServiceImpl implements CMaquinaService {
     public List<CMaquina> findAll(){
         return maquinaMapper.findAll();
     }
+
+    /**
+     * Método que permite ubicar una máquina a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener la máquina en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código de la máquina
+     * @return id de la maquina
+     */
+    @Override
+    public Long findByCode(String code) {
+        Long idMaquina = maquinaMapper.findByCode(code);
+        return idMaquina;
+    }
     
 }

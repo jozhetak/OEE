@@ -28,6 +28,12 @@ public interface CRateProduccionMapper {
                                  + "LEFT JOIN productos ON "
                                  + "productos.id = rates_produccion.producto ";
     
+    static final String FIND_BY_MAQUINA_PRODUCTO = "SELECT "
+                                 + " rates_produccion.id as recid "
+                                 + "FROM rates_produccion "
+                                 + "WHERE rates_produccion.maquina = #{maquina} "
+                                 + "AND rates_produccion.producto = #{producto}";
+    
     // </editor-fold>
     
     /**
@@ -36,4 +42,13 @@ public interface CRateProduccionMapper {
      */
     @Select(FIND_ALL)
     public List<CRateProduccion> findAll();    
+    
+    /**
+     * Método que me permite ubicar un rate de producción por su máquina-producto
+     * @param maquina id de la maquina
+     * @param producto id del producto
+     * @return el id del rate
+     */
+    @Select(FIND_BY_MAQUINA_PRODUCTO)
+    public Long findByMaquinaProducto(Long maquina,Long producto);
 }

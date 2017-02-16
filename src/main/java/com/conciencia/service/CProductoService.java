@@ -23,4 +23,17 @@ public interface CProductoService {
      */
     public List<CProducto> findAll();
     
+    /**
+     * Método que permite ubicar un producto a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener al producto en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código del producto
+     * @return el id del producto
+     */
+    public Long findByCode(String code);
+    
 }

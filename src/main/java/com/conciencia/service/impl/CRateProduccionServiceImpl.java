@@ -29,8 +29,28 @@ public class CRateProduccionServiceImpl implements CRateProduccionService {
      * 
      * @return una lista de rates de produccion
      */
+    @Override
     public List<CRateProduccion> findAll(){
         return rateMapper.findAll();
+    }
+
+    /**
+     * Método que permite ubicar un rate de produccion a partir de su máquina y
+     * su producto.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener saber si existe un rate de produccion
+     * para la maquina-producto dados
+     * 
+     * @param maquina el id de la máquina
+     * @param producto el id del producto
+     * @return true or false si existe o no el rate
+     */
+    @Override
+    public Boolean findByMaquinaProducto(Long maquina, Long producto) {
+        return rateMapper.
+                findByMaquinaProducto(maquina, producto) == null;
     }
     
 }

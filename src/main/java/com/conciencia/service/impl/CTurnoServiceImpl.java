@@ -33,16 +33,20 @@ public class CTurnoServiceImpl implements CTurnoService {
         return turnoMapper.findAll();
     }
 
+    /**
+     * Método que permite ubicar un turno a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener el turno en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código del turno
+     * @return el id de turno
+     */
     @Override
-    public Integer getTurnoOrder(String code) {
-        
-        if(code.equalsIgnoreCase("matutino"))
-            return 1;
-        if(code.equalsIgnoreCase("vespertino"))
-            return 2;
-        else
-            return 3;
+    public Long findByCode(String code) {
+        Long turno = turnoMapper.findByCode(code);
+        return turno;
     }
-    
-    
 }

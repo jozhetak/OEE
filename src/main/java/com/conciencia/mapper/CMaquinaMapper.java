@@ -25,6 +25,10 @@ public interface CMaquinaMapper {
                                  + "LEFT JOIN unidades_productivas ON "
                                  + "unidades_productivas.id = maquinas.unidad_produccion";
     
+    static final String FIND_BY_CODE = "SELECT "
+                                 + " maquinas.id "
+                                 + "FROM maquinas WHERE maquinas.codigo = #{code}";
+    
     // </editor-fold>
     
     /**
@@ -32,5 +36,14 @@ public interface CMaquinaMapper {
      * @return lista de máquinas
      */
     @Select(FIND_ALL)
-    public List<CMaquina> findAll();    
+    public List<CMaquina> findAll(); 
+    
+    /**
+     * Query que me permite ubicar un registro de la tabla de máquinas a partir de
+     * un código. 
+     * @param code el código bajo el cual se busca
+     * @return el id del registro.
+     */
+    @Select(FIND_BY_CODE)
+    public Long findByCode(String code);
 }

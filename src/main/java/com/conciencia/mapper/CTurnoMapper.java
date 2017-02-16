@@ -1,5 +1,6 @@
 package com.conciencia.mapper;
 
+import static com.conciencia.mapper.CMaquinaMapper.FIND_BY_CODE;
 import com.conciencia.pojo.CTurno;
 import java.util.List;
 import org.apache.ibatis.annotations.Select;
@@ -22,6 +23,10 @@ public interface CTurnoMapper {
                                  + " duracion "
                                  + "FROM turnos";
     
+    static final String FIND_BY_CODE = "SELECT "
+                                 + " turnos.id "
+                                 + "FROM turnos WHERE turnos.codigo = #{code}";
+    
     // </editor-fold>
     
     /**
@@ -30,4 +35,13 @@ public interface CTurnoMapper {
      */
     @Select(FIND_ALL)
     public List<CTurno> findAll();    
+    
+    /**
+     * Query que me permite ubicar un registro de la tabla de turnos a partir de
+     * un código. 
+     * @param code el código bajo el cual se busca
+     * @return el id del registro.
+     */
+    @Select(FIND_BY_CODE)
+    public Long findByCode(String code);
 }
