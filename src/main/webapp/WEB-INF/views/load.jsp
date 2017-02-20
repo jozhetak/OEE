@@ -24,7 +24,7 @@
 <body>
     <form id="contenidoUploadForm" name="contenidoUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">
         <input type="file" id="FileData" name="FileData" accept=".csv">
-        <input type="text" id="Ruta" name="Ruta" value="/oAsignaciones">
+        <input type="text" id="Ruta" name="Ruta" value="/oAsignacionDiaCSVLoad" hidden="true">
         <input type="submit">
     </form>
     <script src="static/vendor/jquery/jquery.min.js"></script>

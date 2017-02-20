@@ -114,7 +114,7 @@ public class SysUploadController {
                     LOGGER.debug("Se cargó el archivo: " + originalFileName + " como " + newFile);
                     attributes.addFlashAttribute(MODEL_ATTRIBUTE_CSVFILE, newFile.getPath());
                     
-                    String nuevaRuta = ruta.concat(PROCESS_CSV_PATH); //Redireccion.
+                    String nuevaRuta = ruta; //Redireccion.
                     return createRedirectViewPath(nuevaRuta);
                 }
             }

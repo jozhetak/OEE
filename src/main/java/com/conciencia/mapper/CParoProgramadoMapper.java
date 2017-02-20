@@ -21,6 +21,9 @@ public interface CParoProgramadoMapper {
                                  + " descripcion "
                                  + "FROM paros_programados";
     
+    static final String FIND_BY_CODE = "SELECT "
+                                 + " paros_programados.id "
+                                 + "FROM paros_programados WHERE paros_programados.codigo = #{code}";
     // </editor-fold>
     
     /**
@@ -29,4 +32,13 @@ public interface CParoProgramadoMapper {
      */
     @Select(FIND_ALL)
     public List<CParoProgramado> findAll();    
+    
+    /**
+     * Query que me permite ubicar un registro de la tabla de paros a partir de
+     * un código. 
+     * @param code el código bajo el cual se busca
+     * @return el id del registro.
+     */
+    @Select(FIND_BY_CODE)
+    public Long findByCode(String code);
 }

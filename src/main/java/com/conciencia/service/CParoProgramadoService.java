@@ -23,4 +23,16 @@ public interface CParoProgramadoService {
      */
     public List<CParoProgramado> findAll();
     
+    /**
+     * Método que permite ubicar un paro a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener al paro en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código del paro
+     * @return el id del paro
+     */
+    public Long findByCode(String code);
 }

@@ -5,18 +5,20 @@ import com.conciencia.pojo.CMaquina;
 import com.conciencia.pojo.CTurno;
 import com.conciencia.pojo.OAsignacionDia;
 import com.conciencia.service.CMaquinaService;
+import com.conciencia.service.CParoProgramadoService;
 import com.conciencia.service.CProductoService;
 import com.conciencia.service.CRateProduccionService;
-import com.conciencia.service.OAsignacionDiaService;
-import java.util.List;
-import javax.annotation.Resource;
-import org.springframework.stereotype.Service;
 import com.conciencia.service.CTurnoService;
+import com.conciencia.service.OAsignacionDiaService;
 import com.conciencia.service.SysUserService;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  * Clase que define las operaciones a realizar con los objetos asignacion
@@ -36,6 +38,9 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
     
     @Resource
     CProductoService productoService;
+    
+    @Resource
+    CParoProgramadoService paroService;
     
     @Resource
     SysUserService userService;
@@ -97,14 +102,16 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
      * @param asignacionesDia Lista de asignaciones
      */
     @Override
-    public void insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia){
+    public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia){
         
         Map<String,BigDecimal> tiempoDisponibleMaquinaTurno = getDuracionMaquinaTurno();
         Long idMaquina,idTurno,idProducto,idUsuario;
         String key;
         Boolean existeMaquina,existeTurno,existeProducto,existeUsuario,existeRate,hayTiempoDisponible;
         Date hoy = new Date();
-        BigDecimal tiempoDisponible;        
+        BigDecimal tiempoDisponible;   
+        List<String> loadLog = new ArrayList<>();
+        int contador = 1;
         
         for(OAsignacionDia asignacion: asignacionesDia){
             key = asignacion.getCodigoMaquina().
@@ -112,33 +119,55 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
                             concat(asignacion.getCodigoTurno());
             
            idMaquina = maquinaService.findByCode(asignacion.getCodigoMaquina());
-           existeMaquina = idMaquina == null;
+           existeMaquina = idMaquina != null;
            
            idTurno = turnoService.findByCode(asignacion.getCodigoTurno());
-           existeTurno = idTurno == null;
+           existeTurno = idTurno != null;
            
-           idProducto = productoService.findByCode(asignacion.getCodigoProducto());
-           existeProducto = idProducto == null;
+           if(!asignacion.getEsParo()){
+               idProducto = productoService.findByCode(asignacion.getCodigoProducto());
+           }else{
+               idProducto = paroService.findByCode(asignacion.getCodigoProducto());
+           }
+           existeProducto = idProducto != null;
            
            idUsuario = userService.findByCode(asignacion.getNombreOperador());
-           existeUsuario = idUsuario == null;
+           existeUsuario = idUsuario != null;
            
-           existeRate = rateService.findByMaquinaProducto(idMaquina, idProducto);
+           if(!asignacion.getEsParo()){
+               existeRate = rateService.findByMaquinaProducto(idMaquina, idProducto);
+           }else
+               existeRate = true;
+           
            
            tiempoDisponible = tiempoDisponibleMaquinaTurno.get(key);
-           hayTiempoDisponible = tiempoDisponible.equals(BigDecimal.ZERO);
+           hayTiempoDisponible = !tiempoDisponible.equals(BigDecimal.ZERO);
            
-           if(!existeMaquina){}
+           if(!existeMaquina){
+               loadLog.add("No se encontró la máquina " + asignacion.getCodigoMaquina() + " del registro " + contador);
+           }
            
-           if(!existeTurno){}
+           if(!existeTurno){
+               loadLog.add("No se encontró el turno " + asignacion.getCodigoTurno()+ " del registro " + contador);
+           }
            
-           if(!existeProducto){}
+           if(!existeProducto){
+               loadLog.add("No se encontró al producto " + asignacion.getCodigoProducto() + " del registro " + contador);
+           }
            
-           if(!existeUsuario){}
+           if(!existeUsuario){
+               loadLog.add("No se encontró al operador " + asignacion.getNombreOperador()+ " del registro " + contador);
+           }
            
-           if(!existeRate){}
+           if(!existeRate){
+               loadLog.add("No se encontró un rate de produccion para el producto " 
+                       + asignacion.getCodigoProducto() + " y la máquina " + 
+                       asignacion.getCodigoMaquina() + " del registro " + contador);
+           }
            
-           if(!hayTiempoDisponible){}
+           if(!hayTiempoDisponible){
+               loadLog.add("Se excedió el tiempo asignado a la máquina " + asignacion.getCodigoMaquina());
+           }
            
            if(existeMaquina && 
                    existeTurno && 
@@ -154,10 +183,12 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
                asignacion.setFecha(hoy);
                tiempoDisponibleMaquinaTurno.put(key,tiempoDisponible.subtract(asignacion.getDuracion()));
                
-               // inserto en tabla de asignaciones
+               asignacionDiaMapper.insertAsignacion(asignacion);
            }
+           
+           contador++;
         }
-        
+        return loadLog;
     }
     
     /**

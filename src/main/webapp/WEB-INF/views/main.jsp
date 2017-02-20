@@ -46,7 +46,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -57,7 +57,6 @@
                         <li>
                             <a href=""><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <security:authorize access="hasAuthority('SA') or hasAuthority('ADMIN')">
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Catálogos del Sistema<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
@@ -81,6 +80,7 @@
                                 </li>
                             </ul>
                         </li>
+                        <security:authorize access="hasAuthority('SA') or hasAuthority('ADMIN')">
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Programas de Producción<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
@@ -150,7 +150,7 @@
                         <h2>Asignaciones del día</h2>
                         <hr>
                         <br>
-                        <table id="asignaciones" class="display">
+                        <table id="asignacionesTable" class="display">
                         </table>
                     </div>
                 </div>

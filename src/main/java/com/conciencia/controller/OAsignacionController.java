@@ -1,9 +1,8 @@
 package com.conciencia.controller;
 
-import static com.conciencia.controller.SysUploadController.PROCESS_CSV_PATH;
 import com.conciencia.eCSV.Reader.CSVReader;
 import com.conciencia.pojo.OAsignacionDia;
-import com.conciencia.service.SysUserService;
+import com.conciencia.service.OAsignacionDiaService;
 import com.conciencia.service.csv.OAsignacionesCsvReaderImpl;
 import java.util.List;
 import javax.annotation.Resource;
@@ -24,15 +23,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class OAsignacionController {
     
     @Resource
-    SysUserService sysUserService;
+    OAsignacionDiaService asignacionesService;
         
     
     @RequestMapping(value={"/oAsignacionDiaCSVLoad"},method = RequestMethod.GET)
     public String loadCSV(ModelMap model,HttpServletRequest request) {
-        CSVReader<OAsignacionDia> reader = new OAsignacionesCsvReaderImpl((String)model.get(PROCESS_CSV_PATH));
+        CSVReader<OAsignacionDia> reader = new OAsignacionesCsvReaderImpl((String)model.get("csvFile"),true);
         reader.readFile();
         List<OAsignacionDia> asignaciones = reader.getListOfObjects();
-        return "main";
+        List<String> loadLog = asignacionesService.insertAsignacionesIntoDataBase(asignaciones);
+        model.addAttribute("loadLog", loadLog);
+        return "load";
     }
     
     

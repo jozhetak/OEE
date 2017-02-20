@@ -2,6 +2,7 @@ package com.conciencia.mapper;
 
 import com.conciencia.pojo.CRateProduccion;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -50,5 +51,5 @@ public interface CRateProduccionMapper {
      * @return el id del rate
      */
     @Select(FIND_BY_MAQUINA_PRODUCTO)
-    public Long findByMaquinaProducto(Long maquina,Long producto);
+    public Long findByMaquinaProducto(@Param("maquina")Long maquina,@Param("producto")Long producto);
 }

@@ -86,7 +86,7 @@ $(document).ready(function(){
         asignacionesRestURL += "/" + $("#userId").val();
     }
     
-   $('#asignaciones').DataTable({
+   $('#asignacionesTable').DataTable({
         "ajax": asignacionesRestURL,
         "columns": [
             { 

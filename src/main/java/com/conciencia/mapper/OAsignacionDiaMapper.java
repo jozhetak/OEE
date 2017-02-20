@@ -2,6 +2,7 @@ package com.conciencia.mapper;
 
 import com.conciencia.pojo.OAsignacionDia;
 import java.util.List;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -105,6 +106,11 @@ public interface OAsignacionDiaMapper {
                                     "AND asignaciones_programa_produccion.operador = #{operador} " +
                                     "ORDER BY recid";
     
+    static final String INSERT_ASIGNACION = "INSERT INTO asignaciones_programa_produccion " +
+                                            "(`maquina`,`producto`,`turno`,`operador`,`duracion`,`es_paro`,`fecha`) " +
+                                            " VALUES (#{asignacion.maquina},#{asignacion.producto},#{asignacion.turno},#{asignacion.operador},#{asignacion.duracion},#{asignacion.esParo},#{asignacion.fecha}) ";
+
+    
     // </editor-fold>
     
     /**
@@ -116,4 +122,7 @@ public interface OAsignacionDiaMapper {
 
     @Select(FIND_ALL_BY_OPERADOR)
     public List<OAsignacionDia> findAllByOperador(@Param("operador")Long operador);    
+    
+    @Insert(INSERT_ASIGNACION)
+    public void insertAsignacion(@Param("asignacion")OAsignacionDia asignacion);
 }

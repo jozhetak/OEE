@@ -50,7 +50,7 @@ public class CRateProduccionServiceImpl implements CRateProduccionService {
     @Override
     public Boolean findByMaquinaProducto(Long maquina, Long producto) {
         return rateMapper.
-                findByMaquinaProducto(maquina, producto) == null;
+                findByMaquinaProducto(maquina, producto) != null;
     }
     
 }

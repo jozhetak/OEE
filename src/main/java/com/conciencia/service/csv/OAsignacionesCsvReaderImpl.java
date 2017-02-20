@@ -15,6 +15,10 @@ public class OAsignacionesCsvReaderImpl extends CSVReader<OAsignacionDia>{
         super(csvFile);
     }
 
+    public OAsignacionesCsvReaderImpl(String csvFile,Boolean ignoreHeaders){
+        super(csvFile,ignoreHeaders);
+    }
+    
     @Override
     public OAsignacionDia map(String[] readedLine) throws UnscapedSeparator {
         OAsignacionDia asignacion = new OAsignacionDia();
@@ -26,7 +30,10 @@ public class OAsignacionesCsvReaderImpl extends CSVReader<OAsignacionDia>{
             asignacion.setCodigoTurno(readedLine[j++]);
             asignacion.setNombreOperador(readedLine[j++]);
             asignacion.setDuracion(new BigDecimal(readedLine[j++]));
-            //como valido si es paro?
+            if(Integer.parseInt(readedLine[j]) == 1)
+                asignacion.setEsParo(Boolean.TRUE);
+            else
+                asignacion.setEsParo(Boolean.FALSE);
         }else{
             throw new UnscapedSeparator("");
         }

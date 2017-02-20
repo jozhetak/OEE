@@ -32,10 +32,7 @@ public class HomeController {
                         getAuthentication().getName();
         
         SysUser user = sysUserService.findByUserName(userName);
-        
         model.addAttribute("user", user);
-        
-        
         return "main";
     }
     
@@ -58,7 +55,7 @@ public class HomeController {
      * @return 
      */
     @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
-    @RequestMapping(value={"/oasignacionesLoad"},method = RequestMethod.POST)
+    @RequestMapping(value={"/oasignacionesLoad"},method = RequestMethod.GET)
     public String loadFile(ModelMap model,HttpServletRequest request) {
         return "load";
     }

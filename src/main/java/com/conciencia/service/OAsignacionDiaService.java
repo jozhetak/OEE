@@ -40,6 +40,6 @@ public interface OAsignacionDiaService {
      * como generar un reporte correspondiente
      * @param asignacionesDia Lista de asignaciones
      */
-    public void insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia);
+    public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia);
     
 }

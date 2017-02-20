@@ -29,6 +29,7 @@ public class CProductoServiceImpl implements CProductoService {
      * 
      * @return una lista de productos
      */
+    @Override
     public List<CProducto> findAll(){
         return productoMapper.findAll();
     }

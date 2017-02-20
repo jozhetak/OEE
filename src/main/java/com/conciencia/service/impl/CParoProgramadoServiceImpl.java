@@ -34,4 +34,20 @@ public class CParoProgramadoServiceImpl implements CParoProgramadoService {
         return paroMapper.findAll();
     }
     
+    /**
+     * Método que permite ubicar un paro a partir de su código.
+     * 
+     * Utilizado por:
+     * 
+     * OAsignacionServiceImpl -> Permite obtener al paro en la carga del archivo
+     * de asignaciones.
+     * 
+     * @param code el código de paro
+     * @return id de paro
+     */
+    @Override
+    public Long findByCode(String code) {
+        Long idProducto = paroMapper.findByCode(code);
+        return idProducto;
+    }
 }
