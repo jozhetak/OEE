@@ -2,6 +2,7 @@ package com.conciencia.service;
 
 import com.conciencia.pojo.OAsignacionDia;
 import java.util.List;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 /**
  * Interface que define las operaciones a realizar con los objetos de asignacion
@@ -40,6 +41,6 @@ public interface OAsignacionDiaService {
      * como generar un reporte correspondiente
      * @param asignacionesDia Lista de asignaciones
      */
-    public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia);
+    public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia,SimpMessagingTemplate template);
     
 }

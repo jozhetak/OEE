@@ -1,12 +1,15 @@
 package com.conciencia.controller;
 
 import com.conciencia.eCSV.Reader.CSVReader;
+import com.conciencia.pojo.LoadCSVMessage;
 import com.conciencia.pojo.OAsignacionDia;
 import com.conciencia.service.OAsignacionDiaService;
 import com.conciencia.service.csv.OAsignacionesCsvReaderImpl;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,16 +28,20 @@ public class OAsignacionController {
     @Resource
     OAsignacionDiaService asignacionesService;
         
+    @Autowired
+    private SimpMessagingTemplate template;
     
     @RequestMapping(value={"/oAsignacionDiaCSVLoad"},method = RequestMethod.GET)
     public String loadCSV(ModelMap model,HttpServletRequest request) {
         CSVReader<OAsignacionDia> reader = new OAsignacionesCsvReaderImpl((String)model.get("csvFile"),true);
         reader.readFile();
         List<OAsignacionDia> asignaciones = reader.getListOfObjects();
-        List<String> loadLog = asignacionesService.insertAsignacionesIntoDataBase(asignaciones);
+        List<String> loadLog = asignacionesService.insertAsignacionesIntoDataBase(asignaciones,template);
         model.addAttribute("loadLog", loadLog);
+        model.addAttribute("close",true);
+        
+        //post message to client on notification list
+        this.template.convertAndSend("/notify/oAsignacionLoaded", new LoadCSVMessage("Loaded"));
         return "load";
-    }
-    
-    
+    }    
 }

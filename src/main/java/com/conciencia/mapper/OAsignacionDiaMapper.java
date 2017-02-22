@@ -2,6 +2,7 @@ package com.conciencia.mapper;
 
 import com.conciencia.pojo.OAsignacionDia;
 import java.util.List;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -109,6 +110,8 @@ public interface OAsignacionDiaMapper {
     static final String INSERT_ASIGNACION = "INSERT INTO asignaciones_programa_produccion " +
                                             "(`maquina`,`producto`,`turno`,`operador`,`duracion`,`es_paro`,`fecha`) " +
                                             " VALUES (#{asignacion.maquina},#{asignacion.producto},#{asignacion.turno},#{asignacion.operador},#{asignacion.duracion},#{asignacion.esParo},#{asignacion.fecha}) ";
+    
+    static final String DELETE_ASIGNACIONES = "DELETE FROM asignaciones_programa_produccion WHERE fecha = CURDATE()";
 
     
     // </editor-fold>
@@ -125,4 +128,7 @@ public interface OAsignacionDiaMapper {
     
     @Insert(INSERT_ASIGNACION)
     public void insertAsignacion(@Param("asignacion")OAsignacionDia asignacion);
+    
+    @Delete(DELETE_ASIGNACIONES)
+    public void deleteAsignaciones();
 }

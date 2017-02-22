@@ -33,6 +33,7 @@ public class HomeController {
         
         SysUser user = sysUserService.findByUserName(userName);
         model.addAttribute("user", user);
+        model.addAttribute("role",user.getRolName());
         return "main";
     }
     
@@ -57,6 +58,7 @@ public class HomeController {
     @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/oasignacionesLoad"},method = RequestMethod.GET)
     public String loadFile(ModelMap model,HttpServletRequest request) {
+        model.addAttribute("close",false);
         return "load";
     }
     
@@ -79,7 +81,6 @@ public class HomeController {
      * @param request
      * @return la pantalla de máquinas.
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cmaquinas"},method = RequestMethod.GET)
     public String maquinas(ModelMap model,HttpServletRequest request) {
         return "maquinas";
@@ -91,7 +92,6 @@ public class HomeController {
      * @param request
      * @return la pantalla de turnos.
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cturnos"},method = RequestMethod.GET)
     public String turnos(ModelMap model,HttpServletRequest request) {
         return "turnos";
@@ -103,7 +103,6 @@ public class HomeController {
      * @param request
      * @return la pantalla de turnos.
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cparosProgramados"},method = RequestMethod.GET)
     public String paros(ModelMap model,HttpServletRequest request) {
         return "paros_programados";
@@ -115,7 +114,6 @@ public class HomeController {
      * @param request
      * @return la pantalla de productos.
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cproductos"},method = RequestMethod.GET)
     public String productos(ModelMap model,HttpServletRequest request) {
         return "productos";
@@ -127,7 +125,6 @@ public class HomeController {
      * @param request
      * @return la pantalla de unidades productivas.
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/cunidades"},method = RequestMethod.GET)
     public String unidades(ModelMap model,HttpServletRequest request) {
         return "unidades_productivas";
@@ -139,7 +136,6 @@ public class HomeController {
      * @param request
      * @return la pantalla de unidades productivas.
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
     @RequestMapping(value={"/crates"},method = RequestMethod.GET)
     public String ratesProduccion(ModelMap model,HttpServletRequest request) {
         return "rates_produccion";

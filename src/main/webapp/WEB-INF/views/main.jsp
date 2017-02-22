@@ -152,6 +152,12 @@
                         <br>
                         <table id="asignacionesTable" class="display">
                         </table>
+                        <hr>
+                        <c:if test="${role=='OPER'}">
+                            <button id="reporteButton">Crear Reporte</button>
+                        </c:if>
+                        <hr>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -166,6 +172,8 @@
     <script src="static/vendor/datatables/js/jquery.dataTables.js"></script>
     <link href="static/vendor/datatables/css/jquery.dataTables.css" rel="stylesheet">
     <script src="static/vendor/datatables/js/dataTables.bootstrap.js"></script>
+    <script src="static/vendor/sock/sock.js"></script>
+    <script src="static/vendor/stomp/stomp.js"></script>
     <input type="text" hidden="true" id="userId" value="${user.recid}"></input>
     <input type="text" hidden="true" id="userRole" value="${user.rolName}"></input>
 </body>

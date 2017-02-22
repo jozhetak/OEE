@@ -22,11 +22,24 @@
     <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <hr>
+    <h3>Cargar Asignaciones del día</h3>
+    <hr>
     <form id="contenidoUploadForm" name="contenidoUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">
         <input type="file" id="FileData" name="FileData" accept=".csv">
         <input type="text" id="Ruta" name="Ruta" value="/oAsignacionDiaCSVLoad" hidden="true">
         <input type="submit">
     </form>
+    <table id="logError">
+        <thead>
+            <tr>
+                <th>Error</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
@@ -37,3 +50,29 @@
     <script src="static/vendor/datatables/js/dataTables.bootstrap.js"></script>
 </body>
 </html>
+<script>
+    
+
+
+    var stompClient = null;
+
+    /**
+     * Method that stablishes a connection with the web socket
+     * server. Executes the sowGreeting method when an event occurres 
+     */
+    function connect() {
+        var socket = new SockJS('OEE-websocket'); // search for the server
+        stompClient = Stomp.over(socket); //creates a stomp client
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/notify/logError', function (message) {
+                logMessage(message);
+            });
+        });
+    }
+
+
+    function logMessage(message){
+        console.log(message.message);
+    }
+</script>

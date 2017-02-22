@@ -69,7 +69,7 @@ $("#rates").on('click', function() {
 /* FUNCION QUE DEFINE LA ACCION AL HACER CLICK EN EL BOTÓN DE CARGAR ASIGNACIONES */
 $("#asignaciones").on('click', function() {
    window.open('oasignacionesLoad', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
-          'menubar=no, scrollbars=1,modal=yes,width=' + 800 + ',height=' + 400);
+          'menubar=no, scrollbars=1,modal=yes,width=' + 400 + ',height=' + 400);
   
 });
 
@@ -184,4 +184,76 @@ $(document).ready(function(){
         ],
         "lengthMenu": [[5, 15, 25, -1], [5, 15, 25, "All"]]
     });    
+});
+
+
+var stompClient = null;
+
+/**
+ * Function that updates the gui if the connection status changes
+ * connected: status connection
+ */
+function setConnected(connected) {  
+    if(connected)
+        console.log("connected");
+    else
+        console.log("disconnected");
+}
+
+
+/**
+ * Method that stablishes a connection with the web socket
+ * server. Executes the sowGreeting method when an event occurres 
+ */
+function connect() {
+    var socket = new SockJS('OEE-websocket'); // search for the server
+    stompClient = Stomp.over(socket); //creates a stomp client
+    stompClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/notify/oAsignacionLoaded', function (greeting) {
+            asignacionesCSVLoaded();
+        });
+    });
+}
+
+
+/**
+ * Method that disconects to the server
+ */
+function disconnect() {
+    if (stompClient != null) {
+        stompClient.disconnect();
+    }
+    setConnected(false);
+    console.log("Disconnected");
+}
+
+/**
+ */
+function asignacionesCSVLoaded(message) {
+    var table = $('#asignacionesTable').DataTable();
+    table.ajax.reload();
+}
+
+
+
+$(function () {
+    connect();
+
+    $('#asignacionesTable tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+    
+    $("#reporteButton").click(function(){
+        alert("generar reporte");
+        var table = $('#asignacionesTable').DataTable();
+        console.log(table.row('.selected').data());
+    });
 });
