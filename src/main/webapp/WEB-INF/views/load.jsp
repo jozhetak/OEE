@@ -30,10 +30,12 @@
         <input type="text" id="Ruta" name="Ruta" value="/oAsignacionDiaCSVLoad" hidden="true">
         <input type="submit">
     </form>
+    <br>
+    <hr>
     <table id="logError">
         <thead>
             <tr>
-                <th>Error</th>
+                <th>Errores en la Carga</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +50,8 @@
     <script src="static/vendor/datatables/js/jquery.dataTables.js"></script>
     <link href="static/vendor/datatables/css/jquery.dataTables.css" rel="stylesheet">
     <script src="static/vendor/datatables/js/dataTables.bootstrap.js"></script>
+    <script src="static/vendor/sock/sock.js"></script>
+    <script src="static/vendor/stomp/stomp.js"></script>
 </body>
 </html>
 <script>
