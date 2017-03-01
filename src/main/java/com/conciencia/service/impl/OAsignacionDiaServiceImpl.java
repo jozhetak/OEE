@@ -3,7 +3,6 @@ package com.conciencia.service.impl;
 import com.conciencia.mapper.OAsignacionDiaMapper;
 import com.conciencia.pojo.CMaquina;
 import com.conciencia.pojo.CTurno;
-import com.conciencia.pojo.LoadCSVMessage;
 import com.conciencia.pojo.OAsignacionDia;
 import com.conciencia.service.CMaquinaService;
 import com.conciencia.service.CParoProgramadoService;
@@ -19,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -103,7 +101,7 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
      * @param asignacionesDia Lista de asignaciones
      */
     @Override
-    public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia,SimpMessagingTemplate template){
+    public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia){
         
         asignacionDiaMapper.deleteAsignaciones();
         Map<String,BigDecimal> tiempoDisponibleMaquinaTurno = getDuracionMaquinaTurno();
@@ -146,29 +144,29 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
            hayTiempoDisponible = !tiempoDisponible.equals(BigDecimal.ZERO);
            
            if(!existeMaquina){
-               template.convertAndSend("/notify/logError", new LoadCSVMessage("No se encontró la máquina " + asignacion.getCodigoMaquina() + " del registro " + contador));
+               loadLog.add("No se encontró la máquina " + asignacion.getCodigoMaquina() + " del registro " + contador);
            }
            
            if(!existeTurno){
-               template.convertAndSend("/notify/logError", new LoadCSVMessage("No se encontró el turno " + asignacion.getCodigoTurno()+ " del registro " + contador));
+               loadLog.add("No se encontró el turno " + asignacion.getCodigoTurno()+ " del registro " + contador);
            }
            
            if(!existeProducto){
-               template.convertAndSend("/notify/logError", new LoadCSVMessage("No se encontró al producto " + asignacion.getCodigoProducto() + " del registro " + contador));
+               loadLog.add("No se encontró al producto " + asignacion.getCodigoProducto() + " del registro " + contador);
            }
            
            if(!existeUsuario){
-               template.convertAndSend("/notify/logError", new LoadCSVMessage("No se encontró al operador " + asignacion.getNombreOperador()+ " del registro " + contador));
+               loadLog.add("No se encontró al operador " + asignacion.getNombreOperador()+ " del registro " + contador);
            }
            
            if(!existeRate){               
-               template.convertAndSend("/notify/logError", new LoadCSVMessage("No se encontró un rate de produccion para el producto " 
+               loadLog.add("No se encontró un rate de produccion para el producto " 
                        + asignacion.getCodigoProducto() + " y la máquina " + 
-                       asignacion.getCodigoMaquina() + " del registro " + contador));
+                       asignacion.getCodigoMaquina() + " del registro " + contador);
            }
            
            if(!hayTiempoDisponible){
-               template.convertAndSend("/notify/logError", new LoadCSVMessage("Se excedió el tiempo asignado a la máquina " + asignacion.getCodigoMaquina()));
+               loadLog.add("Se excedió el tiempo asignado a la máquina " + asignacion.getCodigoMaquina()+ " del registro " + contador);
            }
            
            if(existeMaquina && 

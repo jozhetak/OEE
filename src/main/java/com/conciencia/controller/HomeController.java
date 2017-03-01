@@ -55,11 +55,16 @@ public class HomeController {
      * @param request
      * @return 
      */
-    @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN')")
-    @RequestMapping(value={"/oasignacionesLoad"},method = RequestMethod.GET)
+    @RequestMapping(value={"/oasignaciones"},method = RequestMethod.GET)
     public String loadFile(ModelMap model,HttpServletRequest request) {
-        model.addAttribute("close",false);
-        return "load";
+        String userName = 
+                SecurityContextHolder.getContext().
+                        getAuthentication().getName();
+        
+        SysUser user = sysUserService.findByUserName(userName);
+        model.addAttribute("user", user);
+        model.addAttribute("role",user.getRolName());
+        return "asignaciones";
     }
     
     

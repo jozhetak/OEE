@@ -80,43 +80,18 @@
                                 </li>
                             </ul>
                         </li>
-                        <security:authorize access="hasAuthority('SA') or hasAuthority('ADMIN')">
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Programas de Producción<span class="fa arrow"></span></a> <!-- i18n -->
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a>Histórico</a>
+                                    <a id="asignaciones">Consultar asignaciones</a>
                                 </li>
                                 <li>
-                                    <a id="asignaciones">Cargar asignaciones</a>
-                                </li>
-                                <li>
-                                    <a>Consultar asignaciones</a>
-                                </li>
-                                <li>
-                                    <a>Generar Reportes</a>
+                                    <a>Reportes</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        </security:authorize>
-                        <security:authorize access="hasAuthority('SA') or hasAuthority('OPER')">
-                        <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mis Asignaciones<span class="fa arrow"></span></a> <!-- i18n -->
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a>Reportar a una asignación</a>
-                                </li>
-                                <li>
-                                    <a>Modificar una asignación</a>
-                                </li>
-                                <li>
-                                    <a>Ver OEE del día</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        </security:authorize>
                         <security:authorize access="hasAuthority('SA')">
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Administración de Sistema<span class="fa arrow"></span></a> <!-- i18n -->
@@ -147,17 +122,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">ProEfficient 1.0</h1>
-                        <h2>Asignaciones del día</h2>
+                        <h3>Resumenes!</h3>
                         <hr>
-                        <br>
-                        <table id="asignacionesTable" class="display">
-                        </table>
-                        <hr>
-                        <c:if test="${role=='OPER'}">
-                            <button id="reporteButton">Crear Reporte</button>
-                        </c:if>
-                        <hr>
-                        <br>
                     </div>
                 </div>
             </div>

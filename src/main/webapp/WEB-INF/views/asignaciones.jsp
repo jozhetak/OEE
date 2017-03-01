@@ -3,6 +3,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
@@ -23,8 +24,15 @@
 </head>
 <body>
     <hr>
-    <h3>Cargar Asignaciones del día</h3>
+    <h3>Asignaciones del día</h3>
     <hr>
+    <table id="asignacionesTable" class="display">
+    </table>
+    <hr>
+    <c:if test="${role=='OPER'}">
+        <button id="reporteButton">Crear Reporte</button>
+    </c:if>
+    <c:if test="${role == 'ADMIN' || role == 'SA'}">
     <form id="contenidoUploadForm" name="contenidoUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">
         <input type="file" id="FileData" name="FileData" accept=".csv">
         <input type="text" id="Ruta" name="Ruta" value="/oAsignacionDiaCSVLoad" hidden="true">
@@ -32,16 +40,15 @@
     </form>
     <br>
     <hr>
-    <table id="logError">
-        <thead>
-            <tr>
-                <th>Errores en la Carga</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
+    <c:if test="${fn:length(loadLog) gt 0}">
+        Errores en la carga del archivo:<br>
+    <c:forEach var="log" items="${loadLog}">
+        <c:out value="${log}"/><br>
+    </c:forEach>
+    </c:if>
+    </c:if>
+    <input type="text" hidden="true" id="userId" value="${user.recid}"></input>
+    <input type="text" hidden="true" id="userRole" value="${user.rolName}"></input>
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
@@ -52,6 +59,8 @@
     <script src="static/vendor/datatables/js/dataTables.bootstrap.js"></script>
     <script src="static/vendor/sock/sock.js"></script>
     <script src="static/vendor/stomp/stomp.js"></script>
+    <script type="text/javascript" src="static/js/asignacionesJS/asignaciones.js"></script>
+    
 </body>
 </html>
 <script>
