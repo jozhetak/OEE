@@ -1,6 +1,7 @@
 package com.conciencia.controller.rest;
 
 
+import com.conciencia.pojo.DataTableJsonResponse;
 import com.conciencia.pojo.SysUser;
 import com.conciencia.service.SysUserService;
 import java.util.HashMap;
@@ -38,14 +39,18 @@ public class SysUserRestService {
     private SysUserService service;
     
     /**
-     * Método que genera la lista de Procesos Raci existentes
+     * Método que genera la lista de objetos SysUser existentes
      * @return lista de procesos
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<SysUser> getAll() {
+    public DataTableJsonResponse<SysUser> getAll() {
         LOG.log(Level.INFO,"Obteniendo Todos los usuarios del sistema");
-        return service.findAll();
+        List<SysUser> users = service.findAll();
+        DataTableJsonResponse<SysUser> response = new DataTableJsonResponse<>();
+        response.setData(users);
+        
+        return response;
     }
     
     /**

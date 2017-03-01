@@ -35,24 +35,5 @@ public interface SysRoleService {
      */
     public SysRole findByCodigo(String codigo);
     
-    /**
-     * Método que da de alta un objeto SysRole
-     * @param role Objeto a dar de alta
-     * @return objeto insertado
-     */
-    public SysRole createRole(SysRole role) throws Exception;
-    
-    /**
-     * Método que permite actualizar un objeto SysRole
-     * @param role objeto a actualizar
-     * @return Objeto actualizado
-     */
-    public SysRole updateRole(SysRole role) throws Exception;
-    
-    /**
-     * Método que permite eliminar un objeto SysRole
-     * @param role el id del objeto SysRole a eliminar
-     * @return si la operación se realizó con éxito.
-     */
-    public Boolean deleteRole(Long role) throws Exception;
+   
 }

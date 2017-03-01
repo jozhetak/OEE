@@ -42,9 +42,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
                         <li class="divider"></li>
                         <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -101,9 +98,6 @@
                                 </li>
                                 <li>
                                     <a id="roles">Roles</a>
-                                </li>
-                                <li>
-                                    <a>Reportes de uso</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
