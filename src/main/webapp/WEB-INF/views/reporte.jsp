@@ -32,26 +32,32 @@
                     <div class="col-lg-12">
                         <div role="form">
                             <div class="form-group">
-                                <input id="recid" hidden="true"></input>
+                                <input id="recid" hidden="true" value="${reporte.recid}"></input>
+                            </div>
+                            <div class="form-group">
+                                <input id="idAsignacion" hidden="true" value="${asignacion.recid}"></input>
+                            </div>
+                            <div class="form-group">
+                                <input id="duracionAsignacion" hidden="true" value="${asignacion.duracion}"></input>
                             </div>
                             <div class="form-group">
                                 <label>Tiempo Efectivo de Produccion</label>
-                                <input id="tiempoEfectivoProduccion" class="form-control" placeholder="Minutos"></input>
+                                <input id="tiempoEfectivoProduccion" class="form-control" placeholder="Minutos" value="${reporte.tiempoEfectivoProduccion}"></input>
                             </div>
                             <div class="form-group">
                                 <label>Unidades Producidas</label>
-                                <input id="unidadesProducidas" class="form-control" placeholder="Unidades Producidas"></input>
+                                <input id="unidadesProducidas" class="form-control" placeholder="Unidades Producidas" value="${reporte.unidadesProducidas}"></input>
                             </div>
                             <div class="form-group">
                                 <label>Unidades Aceptadas</label>
-                                <input id="unidadesAceptadas" class="form-control" placeholder="Unidades Aceptadas"></input>
+                                <input id="unidadesAceptadas" class="form-control" placeholder="Unidades Aceptadas" value="${reporte.unidadesAceptadas}"></input>
                             </div>
                             <div class="form-group">
                                 <label>Informacion Adicional</label>
-                                <textarea id="informacionAdicional" class="form-control" rows="5"></textarea>
+                                <textarea id="informacionAdicional" class="form-control" rows="5">${reporte.informacionAdicional}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
+                            <button type="submit" id="submitButton" class="btn btn-default">Submit Button</button>
+                            <button type="reset" id="resetButton" class="btn btn-default">Reset Button</button>
                         </div>
                     </div>
                 </div>
@@ -72,7 +78,7 @@
         <script src="static/vendor/datatables/js/dataTables.bootstrap.js"></script>
         <script src="static/vendor/sock/sock.js"></script>
         <script src="static/vendor/stomp/stomp.js"></script>
-        <script type="text/javascript" src="static/js/asignacionesJS/asignaciones.js"></script>
+        <script type="text/javascript" src="static/js/reportesJS/reportes.js"></script>
 
     </body>
 </html>
