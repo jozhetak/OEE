@@ -118,18 +118,26 @@ $('#asignacionesTable').DataTable({
 
 $(function () {
     $('#asignacionesTable tbody').on( 'click', 'tr', function () {
+        var table = $('#asignacionesTable').DataTable();
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
+            $("#reporteButton").addClass("disabled");
         }
         else {
             $('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+            if(!table.row('.selected').data().esParo)
+                $("#reporteButton").removeClass("disabled");
+            else
+                $("#reporteButton").addClass("disabled");
         }
-    } );
+    });
     
     $("#reporteButton").click(function(){
-        alert("generar reporte");
+        //alert("generar reporte");
         var table = $('#asignacionesTable').DataTable();
         console.log(table.row('.selected').data());
+        window.open('OAsignacion/reporte/'+table.row('.selected').data().recid, '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
+            'menubar=no, scrollbars=1,modal=yes,width=300,height=600');
     });
 });

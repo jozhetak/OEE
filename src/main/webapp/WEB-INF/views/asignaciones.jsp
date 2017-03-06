@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="Conciencia" content="">
-    <title>ProEfficient</title> <!-- i18n -->
+    <title>Asignaciones</title> <!-- i18n -->
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/" />
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
     </table>
     <hr>
     <c:if test="${role=='OPER'}">
-        <button id="reporteButton">Crear Reporte</button>
+        <button id="reporteButton" class="btn btn-success disabled">Reporte</button>
     </c:if>
     <c:if test="${role == 'ADMIN' || role == 'SA'}">
     <form id="contenidoUploadForm" name="contenidoUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">

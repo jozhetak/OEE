@@ -18,6 +18,26 @@ public interface OAsignacionDiaMapper {
     
     // <editor-fold defaultstate="collapsed" desc="CONSULTAS DEFINIDAS">
     
+    static final String FIND_ONE = "SELECT " +
+                                    "asignaciones_programa_produccion.id AS recid," +
+                                    "asignaciones_programa_produccion.maquina," +
+                                    "maquinas.codigo AS codigoMaquina," +
+                                    "asignaciones_programa_produccion.producto," +
+                                    "productos.codigo AS codigoProducto," +
+                                    "asignaciones_programa_produccion.turno," +
+                                    "turnos.codigo AS codigoTurno," +
+                                    "asignaciones_programa_produccion.operador," +
+                                    "usuarios.nombre AS nombreOperador," +
+                                    "asignaciones_programa_produccion.duracion," +
+                                    "asignaciones_programa_produccion.es_paro AS esParo," +
+                                    "fecha " +
+                                    "FROM oee_db.asignaciones_programa_produccion " +
+                                    "LEFT JOIN maquinas ON asignaciones_programa_produccion.maquina = maquinas.id " +
+                                    "LEFT JOIN productos ON asignaciones_programa_produccion.producto = productos.id " +
+                                    "LEFT JOIN turnos ON asignaciones_programa_produccion.turno = turnos.id " +
+                                    "LEFT JOIN usuarios ON asignaciones_programa_produccion.operador = usuarios.id_usuario " +
+                                    "WHERE asignaciones_programa_produccion.id = #{id}" ;
+    
     static final String FIND_ALL = "SELECT " +
                                     "asignaciones_programa_produccion.id AS recid," +
                                     "asignaciones_programa_produccion.maquina," +
@@ -115,6 +135,13 @@ public interface OAsignacionDiaMapper {
 
     
     // </editor-fold>
+    
+    /**
+     * Query que regresa todas las asignaciones del día de hoy para una máquina dada
+     * @return lista de máquinas
+     */
+    @Select(FIND_ONE)
+    public OAsignacionDia findOne(@Param("id")Long id);
     
     /**
      * Query que regresa todas las asignaciones del día de hoy para una máquina dada

@@ -120,6 +120,10 @@ public class OReporteOperador implements Serializable,Comparable{
         return this.recid < asingacion.getRecid()? -1: this.recid.equals(asingacion.getRecid())? 0:1;
     }
     
+    
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 7;

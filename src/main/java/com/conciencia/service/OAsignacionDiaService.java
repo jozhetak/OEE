@@ -13,6 +13,13 @@ import java.util.List;
 public interface OAsignacionDiaService {
     
     /**
+     * Método que encuentra una asignacion dado su id
+     * @param id id de la asignacion
+     * @return la signacion correspondiente;
+     */
+    public OAsignacionDia findOne(Long id);
+    
+    /**
      * Método que regresa una lista de asignaciones.
      * 
      * Utilizado por:

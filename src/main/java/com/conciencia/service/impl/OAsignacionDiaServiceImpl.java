@@ -50,6 +50,11 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
     
     @Resource
     CRateProduccionService rateService;
+    
+    @Override
+    public OAsignacionDia findOne(Long id) {
+        return asignacionDiaMapper.findOne(id);
+    }
         
     /**
      * Método que regresa una lista de asignaciones por máquina.
@@ -218,4 +223,6 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
         }
         return tiempoDisponibleTurnoMaquina;
     }
+
+    
 }
