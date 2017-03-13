@@ -30,9 +30,13 @@
     </table>
     <hr>
     <c:if test="${role=='OPER'}">
-        <button id="reporteButton" class="btn btn-success disabled">Reporte</button>
+        <button id="reporteButton" class="btn btn-success disabled">Reportar</button>
     </c:if>
     <c:if test="${role == 'ADMIN' || role == 'SA'}">
+    <button id="reporteButton" class="btn btn-success disabled">Consultar</button>
+    </br>
+    <hr>
+    </br>
     <form id="contenidoUploadForm" name="contenidoUploadForm" method="post" action="uploadFile" enctype="multipart/form-data">
         <input type="file" id="FileData" name="FileData" accept=".csv">
         <input type="text" id="Ruta" name="Ruta" value="/oAsignacionDiaCSVLoad" hidden="true">

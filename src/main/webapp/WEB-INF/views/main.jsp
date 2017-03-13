@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">ProEfficient v1.0</a> <!-- i18n -->
+                <a class="navbar-brand" href="index.html">ProEfficient v1.0 - ${user.userName}</a> <!-- i18n -->
             </div>
 
             <ul class="nav navbar-top-links navbar-right">

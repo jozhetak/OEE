@@ -36,7 +36,7 @@ public interface OReporteOperadorMapper {
                                          " unidades_producidas = #{reporte.unidadesProducidas}," +
                                          " unidades_aceptadas = #{reporte.unidadesAceptadas}," +
                                          " tiempo_paro = #{reporte.tiempoParo}," +
-                                         " informacion_adicional = #{reporte.informacionAdiciona} " +
+                                         " informacion_adicional = #{reporte.informacionAdicional} " +
                                          " WHERE id = #{reporte.recid}";
 
     

@@ -23,6 +23,7 @@
         <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <input type="text" id="roleId" hidden ="true" value="${role}"></input>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h5>Reporte de la asignacion : ${asignacion.codigoMaquina} - ${asignacion.codigoProducto}</h5>
@@ -32,7 +33,7 @@
                     <div class="col-lg-12">
                         <div role="form">
                             <div class="form-group">
-                                <input id="recid" hidden="true" value="${reporte.recid}"></input>
+                                <input id="recid" hidden="true" value="${reporte.recid}" ></input>
                             </div>
                             <div class="form-group">
                                 <input id="idAsignacion" hidden="true" value="${asignacion.recid}"></input>
@@ -56,8 +57,10 @@
                                 <label>Informacion Adicional</label>
                                 <textarea id="informacionAdicional" class="form-control" rows="5">${reporte.informacionAdicional}</textarea>
                             </div>
+                            <c:if test="${role=='OPER'}">
                             <button type="submit" id="submitButton" class="btn btn-default">Submit Button</button>
                             <button type="reset" id="resetButton" class="btn btn-default">Reset Button</button>
+                            </c:if>
                         </div>
                     </div>
                 </div>

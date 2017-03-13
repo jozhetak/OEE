@@ -33,6 +33,6 @@ public interface OReporteOperadorService {
      * @param reporte el reporte a actualizar
      * @return el reporte actualizado
      */
-    public OReporteOperador updareReporte(OReporteOperador reporte);
+    public OReporteOperador updateReporte(OReporteOperador reporte);
     
 }

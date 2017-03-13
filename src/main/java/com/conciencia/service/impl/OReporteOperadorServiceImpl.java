@@ -31,7 +31,7 @@ public class OReporteOperadorServiceImpl implements OReporteOperadorService {
     }
 
     @Override
-    public OReporteOperador updareReporte(OReporteOperador reporte) {
+    public OReporteOperador updateReporte(OReporteOperador reporte) {
         reporteMapper.updateReporte(reporte);
         return reporte;
     }

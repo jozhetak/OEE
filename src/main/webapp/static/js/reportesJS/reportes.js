@@ -63,7 +63,7 @@ $("#submitButton").click(function(){
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                alert("algo");
+                window.close();
             },
             error: function (data) {
                 alert(data.responseJSON.error);
@@ -80,3 +80,11 @@ $("#resetButton").click(function(){
     $("#unidadesAceptadas").val("");
     $("#informacionAdicional").val("");
 });
+
+if($("#roleId").val() === "ADMIN"){
+    $("#duracionAsignacion").attr("disabled","disabled");
+    $("#tiempoEfectivoProduccion").attr("disabled","disabled");
+    $("#unidadesProducidas").attr("disabled","disabled");
+    $("#unidadesAceptadas").attr("disabled","disabled");
+    $("#informacionAdicional").attr("disabled","disabled");
+}

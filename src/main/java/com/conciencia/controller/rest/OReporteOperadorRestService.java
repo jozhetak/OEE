@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.swing.JOptionPane;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,6 +39,7 @@ public class OReporteOperadorRestService {
     
     /**
      * Método que regresa todas las maquinas existentes
+     * @param reporte el id del objeto a buscar
      * @return lista de maquinas
      */
     @RequestMapping(value="/{reporte}",method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class OReporteOperadorRestService {
     
     /**
      * Servicio rest que permite crear objetos SysUser en la base de datos
-     * @param user
+     * @param reporte el reporte a insertar/actualizar
      * @return Status del insert.
      */
     @RequestMapping(value="/reporte",method = RequestMethod.POST)
@@ -59,25 +59,25 @@ public class OReporteOperadorRestService {
     public ResponseEntity reportar(@RequestBody OReporteOperador reporte) {
         LOG.log(Level.INFO,"Creando el objeto {0}",reporte);
         Map<String,Object> response = new HashMap<>();
+        OReporteOperador responseObj = null;
         if(reporte.getRecid() != null){
-            JOptionPane.showMessageDialog(null,"Update");
+            responseObj = service.updateReporte(reporte);
         }else{
-            JOptionPane.showMessageDialog(null,"Create");
+            responseObj = service.createReporte(reporte);
         }
-//        try{
-//            
-//            if(created != null){
-//                response.put("created_value",user);
-//                return new ResponseEntity<>(response,HttpStatus.CREATED);
-//            }
-//            else
-//                throw new Exception();
-//        }catch(Exception e){
-//            String message = e.getMessage();
-//            response.put("error",message);
-//            return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
-//        }    
-        return new ResponseEntity<>(response,HttpStatus.CREATED);
+        try{
+            
+            if(responseObj != null){
+                response.put("created_value",responseObj);
+                return new ResponseEntity<>(response,HttpStatus.CREATED);
+            }
+            else
+                throw new Exception();
+        }catch(Exception e){
+            String message = e.getMessage();
+            response.put("error",message);
+            return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+        }    
     }
     
     

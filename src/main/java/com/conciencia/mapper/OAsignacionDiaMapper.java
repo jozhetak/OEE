@@ -56,7 +56,8 @@ public interface OAsignacionDiaMapper {
                                     "LEFT JOIN productos ON asignaciones_programa_produccion.producto = productos.id " +
                                     "LEFT JOIN turnos ON asignaciones_programa_produccion.turno = turnos.id " +
                                     "LEFT JOIN usuarios ON asignaciones_programa_produccion.operador = usuarios.id_usuario " +
-                                    "WHERE fecha = CURDATE() AND asignaciones_programa_produccion.es_paro = 0 " +
+                                    "WHERE fecha = (SELECT distinct fecha FROM asignaciones_programa_produccion ORDER BY FECHA DESC LIMIT 1) " + // siempre se muestra las ultimas asignaciones
+                                    "AND asignaciones_programa_produccion.es_paro = 0 " +
                                     "AND productos.codigo IS NOT NULL " +
                                     "UNION " +
                                     "SELECT " +
@@ -77,7 +78,8 @@ public interface OAsignacionDiaMapper {
                                     "LEFT JOIN paros_programados ON asignaciones_programa_produccion.producto = paros_programados.id " +
                                     "LEFT JOIN turnos ON asignaciones_programa_produccion.turno = turnos.id " +
                                     "LEFT JOIN usuarios ON asignaciones_programa_produccion.operador = usuarios.id_usuario " +
-                                    "WHERE fecha = CURDATE() AND asignaciones_programa_produccion.es_paro = 1 " +
+                                    "WHERE fecha = (SELECT distinct fecha FROM asignaciones_programa_produccion ORDER BY FECHA DESC LIMIT 1) " +
+                                    "AND asignaciones_programa_produccion.es_paro = 1 " +
                                     "AND paros_programados.codigo IS NOT NULL " +
                                     "ORDER BY recid";
     
@@ -100,7 +102,9 @@ public interface OAsignacionDiaMapper {
                                     "LEFT JOIN productos ON asignaciones_programa_produccion.producto = productos.id " +
                                     "LEFT JOIN turnos ON asignaciones_programa_produccion.turno = turnos.id " +
                                     "LEFT JOIN usuarios ON asignaciones_programa_produccion.operador = usuarios.id_usuario " +
-                                    "WHERE fecha = CURDATE() AND asignaciones_programa_produccion.es_paro = 0 " +
+                                    "WHERE fecha = (SELECT distinct fecha FROM asignaciones_programa_produccion " +
+                                    "WHERE  asignaciones_programa_produccion.operador = #{operador} ORDER BY FECHA DESC LIMIT 1) " +
+                                    "AND asignaciones_programa_produccion.es_paro = 0 " +
                                     "AND productos.codigo IS NOT NULL " +
                                     "AND asignaciones_programa_produccion.operador = #{operador} " +
                                     "UNION " +
@@ -122,7 +126,9 @@ public interface OAsignacionDiaMapper {
                                     "LEFT JOIN paros_programados ON asignaciones_programa_produccion.producto = paros_programados.id " +
                                     "LEFT JOIN turnos ON asignaciones_programa_produccion.turno = turnos.id " +
                                     "LEFT JOIN usuarios ON asignaciones_programa_produccion.operador = usuarios.id_usuario " +
-                                    "WHERE fecha = CURDATE() AND asignaciones_programa_produccion.es_paro = 1 " +
+                                    "WHERE fecha = (SELECT distinct fecha FROM asignaciones_programa_produccion " +
+                                    "WHERE  asignaciones_programa_produccion.operador = #{operador} ORDER BY FECHA DESC LIMIT 1) " +
+                                    "AND asignaciones_programa_produccion.es_paro = 1 " +
                                     "AND paros_programados.codigo IS NOT NULL " +
                                     "AND asignaciones_programa_produccion.operador = #{operador} " +
                                     "ORDER BY recid";
@@ -138,6 +144,7 @@ public interface OAsignacionDiaMapper {
     
     /**
      * Query que regresa todas las asignaciones del día de hoy para una máquina dada
+     * @param id
      * @return lista de máquinas
      */
     @Select(FIND_ONE)
