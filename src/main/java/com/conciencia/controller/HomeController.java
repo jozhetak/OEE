@@ -145,4 +145,15 @@ public class HomeController {
     public String ratesProduccion(ModelMap model,HttpServletRequest request) {
         return "rates_produccion";
     }
+    
+    /**
+     * Controlador que responde a la solicitud de la pantalla de reportes de OEE
+     * @param model
+     * @param request
+     * @return la pantalla de reportesOEE
+     */
+    @RequestMapping(value={"/reportesOEE"},method = RequestMethod.GET)
+    public String oee(ModelMap model,HttpServletRequest request) {
+        return "reportesOEE";
+    }
 }

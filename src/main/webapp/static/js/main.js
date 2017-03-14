@@ -61,6 +61,10 @@ $("#rates").on('click', function() {
             'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
 });
 
+$("#oeeMaquinas").on('click', function() {
+   window.open('reportesOEE', '_blank', 'location=no, status=no, toolbar=no, titlebar=no,' +
+            'menubar=no, scrollbars=1,modal=yes,fullscreen=yes');
+});
 
 /****************************************************************************/
 

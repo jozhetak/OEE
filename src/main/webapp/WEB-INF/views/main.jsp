@@ -83,9 +83,11 @@
                                 <li>
                                     <a id="asignaciones">Consultar asignaciones</a>
                                 </li>
+                                <security:authorize access="hasAuthority('SA') or hasAuthority('ADMIN')">
                                 <li>
-                                    <a>Reportes</a>
+                                    <a id="oeeMaquinas">Reportes</a>
                                 </li>
+                                </security:authorize>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
