@@ -1,7 +1,10 @@
 package com.conciencia.controller;
 
 import com.conciencia.pojo.SysUser;
+import com.conciencia.service.OAsignacionDiaService;
 import com.conciencia.service.SysUserService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +26,9 @@ public class HomeController {
     
     @Resource
     SysUserService sysUserService;
+    
+    @Resource
+    OAsignacionDiaService asignacionDiaService;
         
     @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN') or hasAuthority('OPER')")
     @RequestMapping(value={"/","/index"},method = RequestMethod.GET)
@@ -32,8 +38,29 @@ public class HomeController {
                         getAuthentication().getName();
         
         SysUser user = sysUserService.findByUserName(userName);
+        String role = user.getRolName();
         model.addAttribute("user", user);
-        model.addAttribute("role",user.getRolName());
+        model.addAttribute("role",role);
+        
+        Date fecha;
+        Integer asignaciones;
+        Integer reportadas;
+        
+        if(role.equals("SA") || role.equals("ADMIN")){
+            fecha = asignacionDiaService.getUltimaFechaAsignacionGeneral();
+            asignaciones = asignacionDiaService.getNumerAsignacionesGeneral(fecha);
+            reportadas = asignacionDiaService.getNumerReportadasGeneral(fecha);
+        }else{
+            fecha = asignacionDiaService.getUltimaFechaAsignacionOperador(user.getRecid());
+            asignaciones = asignacionDiaService.getNumerAsignacionesOperador(fecha, user.getRecid());
+            reportadas = asignacionDiaService.getNumerReportadasOperador(fecha, user.getRecid());
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        model.addAttribute("fechaUltimaAsignacion",sdf.format(fecha));
+        model.addAttribute("asignaciones",asignaciones);
+        model.addAttribute("reportadas",reportadas);
+        model.addAttribute("avance",(reportadas/asignaciones)*100);
+        
         return "main";
     }
     

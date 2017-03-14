@@ -224,5 +224,35 @@ public class OAsignacionDiaServiceImpl implements OAsignacionDiaService {
         return tiempoDisponibleTurnoMaquina;
     }
 
+    @Override
+    public Date getUltimaFechaAsignacionGeneral() {
+        return asignacionDiaMapper.getUltimaFechaAsignacionGeneral();
+    }
+
+    @Override
+    public Date getUltimaFechaAsignacionOperador(Long operador) {
+        return asignacionDiaMapper.getUltimaFechaAsignacionOperador(operador);
+    }
+
+    @Override
+    public Integer getNumerAsignacionesGeneral(Date fecha) {
+        return asignacionDiaMapper.getNumeroAsignacionesGeneral(fecha);
+    }
+
+    @Override
+    public Integer getNumerAsignacionesOperador(Date fecha, Long operador) {
+        return asignacionDiaMapper.getNumeroAsignacionesOperador(fecha, operador);
+    }
+
+    @Override
+    public Integer getNumerReportadasGeneral(Date fecha) {
+        return asignacionDiaMapper.getNumeroReportadasGeneral(fecha);
+    }
+
+    @Override
+    public Integer getNumerReportadasOperador(Date fecha, Long operador) {
+        return asignacionDiaMapper.getNumeroReportadasOperador(fecha, operador);
+    }
+
     
 }

@@ -118,7 +118,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">ProEfficient 1.0</h1>
-                        <h3>Resumenes!</h3>
+                        <div>
+                            <h3>Última fecha con asignaciones:  ${fechaUltimaAsignacion}</h3>
+                            </br>
+                            <h3>Asignaciones: ${asignaciones}</h3>
+                            </br>
+                            <h3>Reportes: ${reportadas}</h3>
+                            </br>
+                            <h3>Porcentaje de Avance: ${avance} %</h3>
+                        </div>
                         <hr>
                     </div>
                 </div>

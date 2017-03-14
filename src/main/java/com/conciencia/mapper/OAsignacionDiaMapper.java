@@ -1,6 +1,7 @@
 package com.conciencia.mapper;
 
 import com.conciencia.pojo.OAsignacionDia;
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -138,7 +139,37 @@ public interface OAsignacionDiaMapper {
                                             " VALUES (#{asignacion.maquina},#{asignacion.producto},#{asignacion.turno},#{asignacion.operador},#{asignacion.duracion},#{asignacion.esParo},#{asignacion.fecha}) ";
     
     static final String DELETE_ASIGNACIONES = "DELETE FROM asignaciones_programa_produccion WHERE fecha = CURDATE()";
+    
+    static final String FECHA_ULTIMAS_ASIGNACIONES_GENERAL = "SELECT " +
+                                                            "DISTINCT(fecha) " +
+                                                            "FROM asignaciones_programa_produccion " +
+                                                            "ORDER BY fecha DESC " +
+                                                            "LIMIT 1";
+    
+    static final String FECHA_ULTIMAS_ASIGNACIONES_OPERADOR = "SELECT " +
+                                                            "DISTINCT(fecha) " +
+                                                            "FROM asignaciones_programa_produccion " +
+                                                            "WHERE asignaciones_programa_produccion.operador = #{operador} " +
+                                                            "ORDER BY fecha DESC " +
+                                                            "LIMIT 1";
 
+    static final String COUNT_ASIGNACIONES_GENERAL = "SELECT COUNT(*) FROM asignaciones_programa_produccion WHERE " +
+                                                     "fecha = #{fecha} AND es_paro = 0";
+    
+    static final String COUNT_ASIGNACIONES_OPERADOR = "SELECT COUNT(*) FROM asignaciones_programa_produccion WHERE " +
+                                                     "fecha = #{fecha} AND es_paro = 0 AND operador = #{operador}";
+    
+    static final String COUNT_ASIGNACIONES_REPORTADAS_GENERAL = "SELECT COUNT(*) FROM asignaciones_programa_produccion " +
+                                                                "JOIN reportes_operador ON asignaciones_programa_produccion.id = reportes_operador.asignacion " +
+                                                                "WHERE fecha = #{fecha} AND es_paro = 0 ";
+                                                                
+    
+    static final String COUNT_ASIGNACIONES_REPORTADAS_OPERADOR = "SELECT COUNT(*) FROM asignaciones_programa_produccion " +
+                                                                 "JOIN reportes_operador ON asignaciones_programa_produccion.id = reportes_operador.asignacion " +
+                                                                 "WHERE fecha = #{fecha} AND es_paro = 0 AND operador = #{operador}";
+                                                                 
+    
+    
     
     // </editor-fold>
     
@@ -165,4 +196,22 @@ public interface OAsignacionDiaMapper {
     
     @Delete(DELETE_ASIGNACIONES)
     public void deleteAsignaciones();
+    
+    @Select(FECHA_ULTIMAS_ASIGNACIONES_GENERAL)
+    public Date getUltimaFechaAsignacionGeneral();
+    
+    @Select(FECHA_ULTIMAS_ASIGNACIONES_OPERADOR)
+    public Date getUltimaFechaAsignacionOperador(@Param("operador")Long operador);
+    
+    @Select(COUNT_ASIGNACIONES_GENERAL)
+    public Integer getNumeroAsignacionesGeneral(@Param("fecha")Date fecha);
+    
+    @Select(COUNT_ASIGNACIONES_OPERADOR)
+    public Integer getNumeroAsignacionesOperador(@Param("fecha")Date fecha,@Param("operador")Long operador);
+    
+    @Select(COUNT_ASIGNACIONES_REPORTADAS_GENERAL)
+    public Integer getNumeroReportadasGeneral(@Param("fecha")Date fecha);
+    
+    @Select(COUNT_ASIGNACIONES_REPORTADAS_OPERADOR)
+    public Integer getNumeroReportadasOperador(@Param("fecha")Date fecha,@Param("operador")Long operador);
 }

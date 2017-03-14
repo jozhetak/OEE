@@ -1,6 +1,7 @@
 package com.conciencia.service;
 
 import com.conciencia.pojo.OAsignacionDia;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,5 +49,17 @@ public interface OAsignacionDiaService {
      * @param asignacionesDia Lista de asignaciones
      */
     public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia);
+    
+    public Date getUltimaFechaAsignacionGeneral();
+    
+    public Date getUltimaFechaAsignacionOperador(Long operador);
+    
+    public Integer getNumerAsignacionesGeneral(Date fecha);
+    
+    public Integer getNumerAsignacionesOperador(Date fecha,Long operador);
+    
+    public Integer getNumerReportadasGeneral(Date fecha);
+    
+    public Integer getNumerReportadasOperador(Date fecha,Long operador);
     
 }
