@@ -10,3 +10,7 @@ CREATE TABLE `paros_programados` (
   `descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `oee_db`.`paros_programados` (`codigo`, `descripcion`) VALUES ('paro_001', 'Paro por cambio de producto');
+INSERT INTO `oee_db`.`paros_programados` (`codigo`, `descripcion`) VALUES ('paro_002', 'Paro por limpieza de maquina');
+INSERT INTO `oee_db`.`paros_programados` (`codigo`, `descripcion`) VALUES ('paro_003', 'Paro por revision administrativa');

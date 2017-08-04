@@ -10,3 +10,5 @@ CREATE TABLE `unidades_productivas` (
   `descripcion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `oee_db`.`unidades_productivas` (`codigo`, `descripcion`) VALUES ('pza', 'Piezas');

@@ -12,3 +12,5 @@ CREATE TABLE `maquinas` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+INSERT INTO `oee_db`.`maquinas` (`codigo`, `descripcion`, `unidad_produccion`) VALUES ('m01', 'Maquina 01', '1');
+INSERT INTO `oee_db`.`maquinas` (`codigo`, `descripcion`, `unidad_produccion`) VALUES ('m02', 'Maquina 02', '1');

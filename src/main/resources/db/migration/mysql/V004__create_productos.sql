@@ -13,3 +13,5 @@ CREATE TABLE `productos` (
   KEY `idx_unidad_producto` (`unidad_produccion`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+INSERT INTO `oee_db`.`productos` (`codigo`, `descripcion`, `unidad_produccion`) VALUES ('p01', 'Producto 01', '1');
+INSERT INTO `oee_db`.`productos` (`codigo`, `descripcion`, `unidad_produccion`) VALUES ('p02', 'Producto 02', '1');
