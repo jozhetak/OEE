@@ -395,12 +395,12 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>${flyway-maven-plugin.version}</version>
                 <configuration>
-                    <driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
-                    <url>jdbc:sqlserver://localhost:1433;databaseName=ipovyc</url>
-                    <user>ipoadmin</user>
-                    <password>Aleph5</password>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost:3306/oee_db</url>
+                    <user>root</user>
+                    <password>4747819</password>
                     <locations>
-                        <location>classpath:db/migration/sqlserver</location>
+                        <location>classpath:db/migration/mysql</location>
                     </locations>
                 </configuration>
                 <dependencies>

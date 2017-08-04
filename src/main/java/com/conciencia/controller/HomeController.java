@@ -33,7 +33,7 @@ public class HomeController {
     @PreAuthorize("hasAuthority('SA') or hasAuthority('ADMIN') or hasAuthority('OPER')")
     @RequestMapping(value={"/","/index"},method = RequestMethod.GET)
     public String index(ModelMap model,HttpServletRequest request) {
-        String userName = 
+    String userName = 
                 SecurityContextHolder.getContext().
                         getAuthentication().getName();
         
@@ -55,11 +55,25 @@ public class HomeController {
             asignaciones = asignacionDiaService.getNumerAsignacionesOperador(fecha, user.getRecid());
             reportadas = asignacionDiaService.getNumerReportadasOperador(fecha, user.getRecid());
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        model.addAttribute("fechaUltimaAsignacion",sdf.format(fecha));
-        model.addAttribute("asignaciones",asignaciones);
-        model.addAttribute("reportadas",reportadas);
-        model.addAttribute("avance",(reportadas/asignaciones)*100);
+        
+        if(fecha != null){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            model.addAttribute("fechaUltimaAsignacion",sdf.format(fecha));
+        }
+        
+        if(asignaciones != null && (reportadas != null && reportadas != null)){
+            model.addAttribute("asignaciones",asignaciones);
+            model.addAttribute("reportadas",reportadas);
+            if(reportadas != 0)
+                model.addAttribute("avance",(reportadas/asignaciones)*100);
+            else
+                model.addAttribute("avance",0);
+        }else{
+            model.addAttribute("asignaciones",0);
+            model.addAttribute("reportadas",0);
+            model.addAttribute("avance",0);
+        }
+        
         
         return "main";
     }

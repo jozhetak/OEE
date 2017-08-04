@@ -11,5 +11,5 @@ CREATE TABLE `productos` (
   `unidad_produccion` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_unidad_producto` (`unidad_produccion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 

@@ -10,11 +10,11 @@ CREATE TABLE `usuarios` (
   `password` varchar(45) DEFAULT NULL,
   `rol_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
 INSERT INTO `oee_db`.`usuarios` (`nombre`, `user_name`, `password`, `rol_id`) VALUES ('ernesto cantu', 'ecv', '4747819', '1');
 INSERT INTO `oee_db`.`usuarios` (`nombre`, `user_name`, `password`, `rol_id`) VALUES ('ernesto cantu', 'admin', '1234', '2');
-INSERT INTO `oee_db`.`usuarios` (`nombre`, `user_name`, `password`, `rol_id`) VALUES ('ernesto cantu', 'oper', '1234', '3');
-INSERT INTO `oee_db`.`usuarios` (`nombre`, `user_name`, `password`, `rol_id`) VALUES ('ernesto cantu', 'qa', '1234', '4');
+INSERT INTO `oee_db`.`usuarios` (`nombre`, `user_name`, `password`, `rol_id`) VALUES ('operador_m01', 'm01', '1234', '3');
+INSERT INTO `oee_db`.`usuarios` (`nombre`, `user_name`, `password`, `rol_id`) VALUES ('operador_m02', 'm02', '1234', '3');
