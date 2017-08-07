@@ -47,6 +47,7 @@ public interface OAsignacionDiaService {
      * Método que se encargará de validar e insertar las asignaciones del día así
      * como generar un reporte correspondiente
      * @param asignacionesDia Lista de asignaciones
+     * @return 
      */
     public List<String> insertAsignacionesIntoDataBase(List<OAsignacionDia> asignacionesDia);
     

@@ -13,6 +13,6 @@ CREATE TABLE `turnos` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t01', '6', 'Matutino');
-INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t01', '6', 'Vespertino');
-INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t03', '5', 'Nocturno');
+INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t01', '360', 'Matutino');
+INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t01', '360', 'Vespertino');
+INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t03', '300', 'Nocturno');

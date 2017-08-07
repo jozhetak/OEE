@@ -34,7 +34,7 @@
                     <th>Record Id</th>
                     <th style="width:33%">Código</th>
                     <th style="width:33%">Descripción</th>
-                    <th style="width:33%">Duración</th>
+                    <th style="width:33%">Duración (Min)</th>
                 </tr>
             </thead>
         </table>

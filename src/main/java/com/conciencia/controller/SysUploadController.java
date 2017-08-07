@@ -38,7 +38,7 @@ public class SysUploadController {
     /**
      * Constante que hace referencia a la ruta de vista base para Z02Escenarios.
      */
-    private static final String UPLOAD_SAVE_DIRECTORY = "C:/Conciencia/files/";    
+    private static final String UPLOAD_SAVE_DIRECTORY = "/home/ernesto/Conciencia/files/";    
     
     /**
      * Constante con el valor del prefijo de redireccionamiento de vistas.
