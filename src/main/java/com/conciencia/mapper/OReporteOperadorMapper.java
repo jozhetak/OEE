@@ -28,7 +28,7 @@ public interface OReporteOperadorMapper {
                                              "JOIN asignaciones_programa_produccion ON asignaciones_programa_produccion.id = reportes_operador.asignacion " +
                                              "WHERE reportes_operador.asignacion = #{asignacion}";
     
-    static final String INSERT_REPORTE = "INSERT INTO reportes_operador(asignacion,tiempo_efectivo_prodccion,unidades_producidas,unidades_aceptadas,tiempo_paro,informacion_adicional) " +
+    static final String INSERT_REPORTE = "INSERT INTO reportes_operador(asignacion,tiempo_efectivo_produccion,unidades_producidas,unidades_aceptadas,tiempo_paro,informacion_adicional) " +
                                          "VALUES (#{reporte.asignacion},#{reporte.tiempoEfectivoProduccion},#{reporte.unidadesProducidas},#{reporte.unidadesAceptadas},#{reporte.tiempoParo},#{reporte.informacionAdicional})";
     
     static final String UPDATE_REPORTE = "UPDATE reportes_operador SET" +

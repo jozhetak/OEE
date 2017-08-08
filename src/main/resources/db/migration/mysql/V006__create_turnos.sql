@@ -14,5 +14,5 @@ CREATE TABLE `turnos` (
 
 
 INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t01', '360', 'Matutino');
-INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t01', '360', 'Vespertino');
+INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t02', '360', 'Vespertino');
 INSERT INTO `oee_db`.`turnos` (`codigo`, `duracion`, `descripcion`) VALUES ('t03', '300', 'Nocturno');

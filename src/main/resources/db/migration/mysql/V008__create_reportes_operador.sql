@@ -10,6 +10,7 @@ CREATE TABLE `reportes_operador` (
   `tiempo_efectivo_produccion` decimal(18,5) DEFAULT NULL,
   `unidades_producidas` decimal(18,5) DEFAULT NULL,
   `unidades_aceptadas` decimal(18,5) DEFAULT NULL,
+  `tiempo_paro` decimal(18,5) DEFAULT NULL,
   `informacion_adicional` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
