@@ -26,7 +26,7 @@
         <input type="text" id="roleId" hidden ="true" value="${role}"></input>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h5>Reporte de la asignacion : ${asignacion.codigoMaquina} - ${asignacion.codigoProducto}</h5>
+                <h5>Reporte de la asignacion : ${asignacion.codigoMaquina} - ${asignacion.codigoProducto} - ${asignacion.codigoTurno}</h5>
             </div>
             <div class="panel-body">
                 <div class="row">

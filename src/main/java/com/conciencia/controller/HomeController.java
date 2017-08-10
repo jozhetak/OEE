@@ -65,7 +65,7 @@ public class HomeController {
             model.addAttribute("asignaciones",asignaciones);
             model.addAttribute("reportadas",reportadas);
             if(reportadas != 0)
-                model.addAttribute("avance",(reportadas/asignaciones)*100);
+                model.addAttribute("avance",((float)reportadas/asignaciones)*100.0);
             else
                 model.addAttribute("avance",0);
         }else{

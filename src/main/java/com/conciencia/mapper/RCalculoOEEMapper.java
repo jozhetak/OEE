@@ -60,6 +60,7 @@ public interface RCalculoOEEMapper {
     
     /**
      * Query que regresa todas las maquinas existentes
+     * @param fechasReporte
      * @return lista de máquinas
      */
     @Select(FIND_OEE_MAQUINAS)

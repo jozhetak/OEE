@@ -18,6 +18,7 @@ public interface RCalculoOEEService {
      * 
      * Utilizado por:
      * 
+     * @param fechas
      * @return una lista de calculos OEE por rango fecha para todas las maquinas
      */
     public List<RCalculoOEE> findOeeMaquinas(SysFechasReporte fechas);
