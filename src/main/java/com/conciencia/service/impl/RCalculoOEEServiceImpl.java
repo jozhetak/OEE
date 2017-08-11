@@ -28,6 +28,7 @@ public class RCalculoOEEServiceImpl implements RCalculoOEEService {
      * 
      * 1.- Grid (Rest Service - getAll)
      * 
+     * @param fechasReporte
      * @return una lista de Máquinas
      */
     @Override
